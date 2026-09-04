@@ -1,4 +1,4 @@
-const familyCalendars = require("./calendars.js")
+const familyCalendars = require("./config/calendars.js");
 
 /* MM Config
  *
@@ -69,18 +69,19 @@ let config = {
 			}
 		},
     {
-      module: "MMM-CalendarExt3",
-      position: "fullscreen_below", // Choose where this displays on your screen
+      module: "MMM-CalendarExt3Journal",
+      position: "fullscreen_below",
       config: {
-        mode: "week",
         instanceId: "basicCalendar",
         locale: 'en-US',
-        weekIndex: 0,
-        weeksInView: 4,
-        maxEventLines: 10,
-        showCW: false,
-        weekdayOptions: { weekday: 'short' }, // not working
-        calendarMergePaths: [], // Leave empty to pull from all default calendars
+        //maxLaneThreshold: 4,
+        hourLength: 16,
+        beginHour: 7,
+        staticTime: true,
+        staticWeek: false,
+        dayIndex: 0,
+        days: 6,
+        calendarSet: [], // Leave empty to pull from all default calendars
         fontSize: "16px",
         eventHeight: "22px",
         refreshInterval: 5 * 60 * 1000 // Refreshes every 5 minute
