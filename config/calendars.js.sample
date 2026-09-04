@@ -1,0 +1,3 @@
+module.exports = [
+  { name: "Some Calendar", url: "https://calendar.google.com/calendar/ical/...", color: "#047420" },
+]
