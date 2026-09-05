@@ -1,5 +1,3 @@
-const familyCalendars = require("./config/calendars.js");
-
 /* MM Config
  *
  * For more information on how you can configure this file
@@ -48,6 +46,31 @@ let config = {
   ],
 
 	modules: [
+    {
+      module: "MMM-pages",
+      config: {
+        modules: [
+          ["MMM-CalendarExt3Journal"], // 4-Day Calendar View
+          //"page-1": ["MMM-CalendarExt3"],        // Full Month Calendar
+          //"page-2": ["MMM-Todoist"],             // Todo List
+          //"page-3": ["weather"]                  // Weather View
+        ],
+        //fixed: ["MMM-Navbar"] // Modules visible on EVERY page (your sidebar)
+      }
+    },
+    // {
+    //   module: "MMM-TabNavigation",
+    //   position: "top_left", // Pinned to the top left
+    //   config: {
+    //     layout: "vertical",
+    //     buttons: [
+    //       { icon: "fa-calendar-day", page: 0 },
+    //       //{ icon: "fa-calendar-alt", page: 1 },
+    //       //{ icon: "fa-tasks", page: 2 },
+    //       //{ icon: "fa-cloud-sun", page: 3 }
+    //     ]
+    //   }
+    // },
 		{
 			module: "alert",
 		},
@@ -65,7 +88,63 @@ let config = {
 			// position: "top_left",
 			config: {
 				maximumNumberOfDays: 40,
-        calendars: familyCalendars
+        calendars: [
+
+          // Sarah
+          {
+            name: "Sarah Work",
+            url: "${SECRET_SARAH_WORK_CALENDAR}",
+            color: "#ffa033"
+          },
+
+          // Family
+          {
+            name: "Family",
+            url: "${SECRET_FAMILY_CALENDAR}",
+            color: "#7b603e"
+          },
+
+          // Daniel
+          {
+            name: "Daniel",
+            url: "${SECRET_DANIEL_CALENDAR}",
+            color: "#b7af5a"
+          },
+          {
+            name: "Kapow",
+            url: "${SECRET_KAPOW_CALENDAR}",
+            color: "#b7af5a"
+          },
+          {
+            name: "Rough Riders",
+            url: "${SECRET_ROUGH_RIDERS_CALENDAR",
+            color: "#b7af5a"
+          },
+          
+          // Luke
+          {
+            name: "Luke",
+            url: "${SECRET_LUKE_CALENDAR}",
+            color: "#abcdde"
+          },
+          {
+            name: "Mustangs",
+            url: "${SECRET_MUSTANGS_CALENDAR}",
+            color: "#abcdde"
+          },
+          
+          // Ben
+          {
+            name: "Ben",
+            url: "${SECRET_BEN_CALENDAR}",
+            color: "#33FF57"
+          },
+          {
+            name: "Green Ninjas",
+            url: "${SECRET_GREEN_NINJAS_CALENDAR}",
+            color: "#33FF57"
+          },
+        ]
 			}
 		},
     {
@@ -75,8 +154,8 @@ let config = {
         instanceId: "basicCalendar",
         locale: 'en-US',
         //maxLaneThreshold: 4,
-        hourLength: 16,
-        beginHour: 7,
+        hourLength: 11,
+        beginHour: 12,
         staticTime: true,
         staticWeek: false,
         dayIndex: 0,
