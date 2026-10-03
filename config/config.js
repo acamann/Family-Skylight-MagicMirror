@@ -65,7 +65,9 @@ let config = {
       module: 'MMM-page-indicator',
       position: 'top_left',
       config: {
-          activeBright: true,
+        pages: 2,
+        activeBright: true,
+        showPageNumberOnHover: false
       }
     },
 		{
@@ -148,6 +150,8 @@ let config = {
       module: "MMM-CalendarExt3Journal",
       position: "fullscreen_below",
       config: {
+        height: "100vh",
+        width: "100%",
         instanceId: "weekCalendar",
         locale: 'en-US',
         //maxLaneThreshold: 4,

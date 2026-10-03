@@ -9,8 +9,8 @@
 
 ## UI & Layout Philosophy
 - **Layout Model**: Flexbox App Shell.
-- **Sidebar**: Left vertical dock (`top_left` region fixed at 80px width, `z-index: 9999`).
-- **Main Workspace**: Shifts left by 80px (`calc(100vw - 80px)`) using Flexbox for tiled module views.
+- **Sidebar**: Left vertical dock (`top_left` region fixed at 50px width, `z-index: 9999`).
+- **Main Workspace**: Shifts left by 50px (`calc(100vw - 50px)`) using Flexbox for tiled module views.
 - **Theme**: Clean, high-contrast, touch-friendly light theme (white background, dark typography).
 
 ## Page & Navigation Architecture
