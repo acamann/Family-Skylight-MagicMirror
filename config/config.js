@@ -40,7 +40,7 @@ let config = {
   watchTargets: [
     "css/main.css",
     "config/config.js",
-    "config/calendars.js",
+    "config/config.env",
     "config/custom.css",
     "config/full-month-calendar.css"
   ],
@@ -51,26 +51,23 @@ let config = {
       config: {
         modules: [
           ["MMM-CalendarExt3Journal"], // 4-Day Calendar View
+          ["MMM-CalendarExt3"], // full month calendar
           //"page-1": ["MMM-CalendarExt3"],        // Full Month Calendar
           //"page-2": ["MMM-Todoist"],             // Todo List
           //"page-3": ["weather"]                  // Weather View
         ],
-        //fixed: ["MMM-Navbar"] // Modules visible on EVERY page (your sidebar)
+        fixed: [
+          "MMM-page-indicator" // Or your touch navigation module, set to 'top_left'
+        ]
       }
     },
-    // {
-    //   module: "MMM-TabNavigation",
-    //   position: "top_left", // Pinned to the top left
-    //   config: {
-    //     layout: "vertical",
-    //     buttons: [
-    //       { icon: "fa-calendar-day", page: 0 },
-    //       //{ icon: "fa-calendar-alt", page: 1 },
-    //       //{ icon: "fa-tasks", page: 2 },
-    //       //{ icon: "fa-cloud-sun", page: 3 }
-    //     ]
-    //   }
-    // },
+    {
+      module: 'MMM-page-indicator',
+      position: 'top_left',
+      config: {
+          activeBright: true,
+      }
+    },
 		{
 			module: "alert",
 		},
@@ -117,7 +114,7 @@ let config = {
           },
           {
             name: "Rough Riders",
-            url: "${SECRET_ROUGH_RIDERS_CALENDAR",
+            url: "${SECRET_ROUGH_RIDERS_CALENDAR}",
             color: "#b7af5a"
           },
           
@@ -151,7 +148,7 @@ let config = {
       module: "MMM-CalendarExt3Journal",
       position: "fullscreen_below",
       config: {
-        instanceId: "basicCalendar",
+        instanceId: "weekCalendar",
         locale: 'en-US',
         //maxLaneThreshold: 4,
         hourLength: 11,
@@ -161,6 +158,24 @@ let config = {
         dayIndex: 0,
         days: 6,
         calendarSet: [], // Leave empty to pull from all default calendars
+        fontSize: "16px",
+        eventHeight: "22px",
+        refreshInterval: 5 * 60 * 1000 // Refreshes every 5 minute
+      }
+    },
+    {
+      module: "MMM-CalendarExt3",
+      position: "fullscreen_below", // Choose where this displays on your screen
+      config: {
+        mode: "week",
+        instanceId: "fourWeekCalendar",
+        locale: 'en-US',
+        weekIndex: 0,
+        weeksInView: 4,
+        maxEventLines: 10,
+        showCW: false,
+        weekdayOptions: { weekday: 'short' }, // not working
+        calendarMergePaths: [], // Leave empty to pull from all default calendars
         fontSize: "16px",
         eventHeight: "22px",
         refreshInterval: 5 * 60 * 1000 // Refreshes every 5 minute
