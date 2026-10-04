@@ -98,55 +98,55 @@ let config = {
           {
             name: "Sarah Work",
             url: "${CAL_SARAH_WORK_CALENDAR}",
-            color: "#ffa033"
+            color: "#CE8A6A"
           },
 
           // Family
           {
             name: "Family",
             url: "${CAL_FAMILY_CALENDAR}",
-            color: "#7b603e"
+            color: "#9B8B78"
           },
 
           // Daniel
           {
             name: "Daniel",
             url: "${CAL_DANIEL_CALENDAR}",
-            color: "#b7af5a"
+            color: "#D0B35C"
           },
           {
             name: "Kapow",
             url: "${CAL_KAPOW_CALENDAR}",
-            color: "#b7af5a"
+            color: "#D0B35C"
           },
           {
             name: "Rough Riders",
             url: "${CAL_ROUGH_RIDERS_CALENDAR}",
-            color: "#b7af5a"
+            color: "#D0B35C"
           },
           
           // Luke
           {
             name: "Luke",
             url: "${CAL_LUKE_CALENDAR}",
-            color: "#abcdde"
+            color: "#9BB8CC"
           },
           {
             name: "Mustangs",
             url: "${CAL_MUSTANGS_CALENDAR}",
-            color: "#abcdde"
+            color: "#9BB8CC"
           },
           
           // Ben
           {
             name: "Ben",
             url: "${CAL_BEN_CALENDAR}",
-            color: "#33FF57"
+            color: "#6FA8A0"
           },
           {
             name: "Green Ninjas",
             url: "${CAL_GREEN_NINJAS_CALENDAR}",
-            color: "#33FF57"
+            color: "#6FA8A0"
           },
         ]
 			}
