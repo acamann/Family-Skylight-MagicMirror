@@ -160,6 +160,7 @@ let config = {
         width: "100%",
         instanceId: "weekCalendar",
         locale: 'en-US',
+        dateHeaderOptions: { month: 'short', day: 'numeric', weekday: 'long' },
         //maxLaneThreshold: 4,
         hourLength: 11,
         beginHour: 12,

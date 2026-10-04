@@ -160,14 +160,23 @@
   padding-bottom: 2px;
 }
 
-/* All-day / multi-day events: keep as block chips, but use a subtle
-   outline-only treatment (calendar-colored border) to match the
-   minimalist month view rather than solid color blocks. */
+/* All-day / multi-day events: filled chips with contrasting text,
+   matching the weekly timeline's block style. */
 .CX3 .event.fullday,
 .CX3 .event.multiday {
-  background-color: transparent !important;
-  background: none !important;
-  box-shadow: none !important;
-  border: 1px solid var(--calendarColor, #9aa0a6) !important;
+  background-color: var(--calendarColor) !important;
+  background: var(--calendarColor) !important;
+  color: var(--oppositeColor) !important;
+  border: none !important;
   border-radius: 4px !important;
+  mix-blend-mode: normal !important;
+}
+
+.CX3 .event.fullday .headline .title,
+.CX3 .event.multiday .headline .title,
+.CX3 .event.fullday .headline .time,
+.CX3 .event.multiday .headline .time,
+.CX3 .event.fullday .headline .startTime,
+.CX3 .event.multiday .headline .startTime {
+  color: var(--oppositeColor) !important;
 }

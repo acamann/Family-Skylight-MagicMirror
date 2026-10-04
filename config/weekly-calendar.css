@@ -39,13 +39,60 @@
 
 /* -----------------------------------------------------
    2. "Today" Highlight (Google-Blue pill badge, matching CX3)
+   Today's cell lays out as: the full weekday name on top, then a
+   compact blue "Oct 4" (month + day) pill beneath it — matching the
+   month view's blue date badge, without an oversized block.
    ----------------------------------------------------- */
-.CX3J .daycell.today .day {
-  background-color: var(--theme-accent) !important;
+.CX3J .daycell .dayTimeParts.month {
+  display: none;
+}
+
+.CX3J .daycell.today {
+  position: relative;
+  display: block !important;
+  text-align: center !important;
+}
+
+/* Full-width pill behind the date line, inset to match the cell's
+   margin. Painted on the cell (not the text spans) so "Oct 4" stays
+   centered as a single string while the chip spans the header width. */
+.CX3J .daycell.today::after {
+  content: "";
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  bottom: 7px;
+  height: 1.3em;
+  background-color: var(--theme-accent);
+  border-radius: 14px;
+  z-index: 0;
+}
+
+.CX3J .daycell.today .dayTimeParts.literal {
+  display: none !important;
+}
+
+.CX3J .daycell.today .dayTimeParts.weekday {
+  display: block !important;
+  width: auto !important;
+}
+
+.CX3J .daycell.today .dayTimeParts.month,
+.CX3J .daycell.today .dayTimeParts.day {
+  display: inline !important;
+  width: auto !important;
+  position: relative;
+  z-index: 1;
   color: #ffffff !important;
-  border-radius: 14px !important;
-  padding: 1px 0 !important;
   font-weight: 700 !important;
+  line-height: 1.3 !important;
+  background: none !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+.CX3J .daycell.today .dayTimeParts.month {
+  margin-right: 3px;
 }
 
 /* Subtle blue outline around the active (today) column,
