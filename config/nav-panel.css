@@ -153,6 +153,12 @@
   mask-image: url("icons/calendar_month.svg") !important;
 }
 
+/* Page 2 Button Icon: checklist.svg */
+.MMM-page-indicator .indicator.page-2::before {
+  -webkit-mask-image: url("icons/checklist.svg") !important;
+  mask-image: url("icons/checklist.svg") !important;
+}
+
 /* Inactive Icon Line Color: White */
 .MMM-page-indicator .indicator:not(.active-page)::before {
   background-color: #ffffff !important;
