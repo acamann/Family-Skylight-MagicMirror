@@ -52,6 +52,7 @@ let config = {
     {
       module: "MMM-pages",
       config: {
+        animationTime: 0, // Instant page transitions
         modules: [
           ["MMM-CalendarExt3Journal"], // 4-Day Calendar View
           ["MMM-CalendarExt3"], // full month calendar
@@ -153,6 +154,7 @@ let config = {
       module: "MMM-CalendarExt3Journal",
       position: "fullscreen_below",
       config: {
+        animationSpeed: 0, // Prevents module re-rendering fade cycles
         height: "100vh",
         width: "100%",
         instanceId: "weekCalendar",
@@ -174,6 +176,7 @@ let config = {
       module: "MMM-CalendarExt3",
       position: "fullscreen_below", // Choose where this displays on your screen
       config: {
+        animationSpeed: 0, // Prevents module re-rendering fade cycles
         mode: "week",
         instanceId: "fourWeekCalendar",
         locale: 'en-US',
