@@ -42,7 +42,10 @@ let config = {
     "config/config.js",
     "config/config.env",
     "config/custom.css",
-    "config/full-month-calendar.css"
+    "config/nav-panel.css",
+    "config/calendar-common.css",
+    "config/full-month-calendar.css",
+    "config/weekly-calendar.css"
   ],
 
 	modules: [

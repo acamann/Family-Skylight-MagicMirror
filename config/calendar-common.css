@@ -1,0 +1,34 @@
+/* =====================================================
+   Calendar Common Styles (Shared across CX3 & CX3J)
+   ===================================================== */
+
+/* -----------------------------------------------------
+   1. Base MM Overrides
+   ----------------------------------------------------- */
+.dimmed { color: #666666; }
+.normal { color: #222222; }
+.bright { color: #000000; }
+header { color: #333333; border-bottom: 1px solid #cccccc; }
+
+/* -----------------------------------------------------
+   2. Shared Calendar Viewport Dimensions & Reset
+   ----------------------------------------------------- */
+.CX3,
+.CX3J {
+  width: 100% !important;
+  max-width: 100% !important;
+  height: 100vh !important;
+  box-sizing: border-box !important;
+  margin: 0 !important;
+  padding: 10px !important;
+}
+
+/* -----------------------------------------------------
+   3. Shared Event Typography & Wrapping
+   ----------------------------------------------------- */
+.CX3 .event .title,
+.CX3J .event .title {
+  white-space: normal;
+  line-height: 1.15;
+  word-break: break-word;
+}

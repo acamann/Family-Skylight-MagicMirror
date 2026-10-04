@@ -1,8 +1,16 @@
-@import url("full-month-calendar.css");
-
 /* =====================================================
-   App Shell & Navigation Architecture
+   App Shell & Style Orchestrator
    ===================================================== */
+
+/* 1. Modular Subsystem Imports */
+@import url("nav-panel.css");
+@import url("calendar-common.css");
+@import url("full-month-calendar.css");
+@import url("weekly-calendar.css");
+
+/* -----------------------------------------------------
+   2. Global Design Tokens
+   ----------------------------------------------------- */
 :root {
   --nav-sidebar-width: 50px;
   --nav-sidebar-bg: #49536A;
@@ -14,7 +22,9 @@
   --theme-accent: #1a73e8;
 }
 
-/* Base Body Reset */
+/* -----------------------------------------------------
+   3. Base Body Reset
+   ----------------------------------------------------- */
 html, body {
   background-color: var(--theme-bg) !important;
   color: var(--theme-text-primary) !important;
@@ -26,182 +36,7 @@ html, body {
 }
 
 /* -----------------------------------------------------
-   1. Left Navigation Sidebar Dock (#49536A, 50px wide, full 100vh height)
-   ----------------------------------------------------- */
-.region.top.bar {
-  pointer-events: none !important;
-}
-
-.region.top.left {
-  position: fixed !important;
-  top: 0 !important;
-  left: 0 !important;
-  bottom: 0 !important;
-  width: var(--nav-sidebar-width) !important;
-  height: 100vh !important;
-  max-width: var(--nav-sidebar-width) !important;
-  z-index: 9999 !important;
-  background-color: var(--nav-sidebar-bg) !important;
-  border-right: none !important;
-  box-sizing: border-box !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-  justify-content: flex-start !important;
-  pointer-events: auto !important;
-  overflow: hidden !important;
-  user-select: none !important;
-}
-
-.region.top.left .container {
-  width: 100% !important;
-  height: 100% !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-  justify-content: flex-start !important;
-  box-sizing: border-box !important;
-  background-color: var(--nav-sidebar-bg) !important;
-}
-
-.region.top.left .module.MMM-page-indicator {
-  width: 100% !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  box-sizing: border-box !important;
-}
-
-.region.top.left .module.MMM-page-indicator .module-content {
-  width: 100% !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-}
-
-.MMM-page-indicator .module-content > div {
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-  width: 100% !important;
-  margin: 0 !important;
-  padding: 0 !important;
-}
-
-/* -----------------------------------------------------
-   2. Square Touchable Navigation Buttons with SVG Icons
-   ----------------------------------------------------- */
-.MMM-page-indicator .circle-wrapper {
-  position: relative !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  width: var(--nav-sidebar-width) !important;
-  height: var(--nav-sidebar-width) !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  box-sizing: border-box !important;
-  cursor: pointer !important;
-  background-color: var(--nav-sidebar-bg) !important;
-  border-width: 0 0 1px 0 !important;
-  border-style: solid !important;
-  border-color: #ffffff !important;
-  touch-action: manipulation !important;
-  transition: background-color 0.15s ease !important;
-}
-
-/* Active option background: solid white */
-.MMM-page-indicator .circle-wrapper:has(.active-page) {
-  background-color: #ffffff !important;
-}
-
-/* Ensure touchable icon fills entire square touch target */
-.MMM-page-indicator .circle-wrapper .indicator {
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  width: 100% !important;
-  height: 100% !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  font-size: 0 !important; /* Suppress FontAwesome icon font */
-  line-height: 1 !important;
-  cursor: pointer !important;
-  box-sizing: border-box !important;
-  opacity: 1 !important;
-  transition: background-color 0.15s ease !important;
-}
-
-/* Active indicator element background: white */
-.MMM-page-indicator .circle-wrapper .indicator.active-page {
-  background-color: #ffffff !important;
-}
-
-.MMM-page-indicator .circle-wrapper .indicator:not(.active-page) {
-  background-color: transparent !important;
-}
-
-/* Base mask styling for SVG icons */
-.MMM-page-indicator .indicator::before {
-  content: "" !important;
-  display: block !important;
-  width: var(--nav-icon-size) !important;
-  height: var(--nav-icon-size) !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  font-family: inherit !important;
-  -webkit-mask-size: contain !important;
-  mask-size: contain !important;
-  -webkit-mask-repeat: no-repeat !important;
-  mask-repeat: no-repeat !important;
-  -webkit-mask-position: center !important;
-  mask-position: center !important;
-  transition: background-color 0.15s ease !important;
-}
-
-/* Page 0 Button Icon: calendar_view_week.svg */
-.MMM-page-indicator .indicator.page-0::before {
-  -webkit-mask-image: url("icons/calendar_view_week.svg") !important;
-  mask-image: url("icons/calendar_view_week.svg") !important;
-}
-
-/* Page 1 Button Icon: calendar_month.svg */
-.MMM-page-indicator .indicator.page-1::before {
-  -webkit-mask-image: url("icons/calendar_month.svg") !important;
-  mask-image: url("icons/calendar_month.svg") !important;
-}
-
-/* Inactive Icon Line Color: White */
-.MMM-page-indicator .indicator:not(.active-page)::before {
-  background-color: #ffffff !important;
-}
-
-/* Active Icon Line Color: #49536A */
-.MMM-page-indicator .indicator.active-page::before {
-  background-color: #49536A !important;
-}
-
-/* Touch active / press feedback */
-.MMM-page-indicator .circle-wrapper:not(:has(.active-page)):active {
-  background-color: #3b4457 !important;
-}
-
-.MMM-page-indicator .circle-wrapper:has(.active-page):active {
-  background-color: #f0f0f0 !important;
-}
-
-/* Suppress hover tooltips on touch display */
-.MMM-page-indicator .tooltip {
-  display: none !important;
-}
-
-/* -----------------------------------------------------
-   3. Main Workspace / Remaining Screen Coverage
+   4. Main Workspace Bounds (Remaining screen next to nav dock)
    ----------------------------------------------------- */
 .region.fullscreen,
 .region.fullscreen.below {
@@ -227,51 +62,4 @@ html, body {
   margin: 0 !important;
   padding: 0 !important;
   box-sizing: border-box !important;
-}
-
-/* Month Calendar View (CX3) fills remaining space */
-.CX3 {
-  width: 100% !important;
-  max-width: 100% !important;
-  height: 100vh !important;
-  box-sizing: border-box !important;
-  padding: 10px !important;
-  margin: 0 !important;
-}
-
-.CX3 .weeks {
-  height: calc(100vh - 40px) !important;
-  width: 100% !important;
-  box-sizing: border-box !important;
-}
-
-/* Timeline Journal View (CX3J) fills remaining space */
-.CX3J {
-  --moduleHeight: 100vh !important;
-  --moduleWidth: 100% !important;
-  width: 100% !important;
-  max-width: 100% !important;
-  height: 100vh !important;
-  box-sizing: border-box !important;
-  margin: 0 !important;
-  padding: 10px !important;
-  color: var(--theme-text-primary);
-}
-
-.CX3J .board {
-  height: calc(100vh - 20px) !important;
-  width: 100% !important;
-  box-sizing: border-box !important;
-}
-
-.CX3J .daycell .day {
-  color: var(--theme-text-primary) !important;
-}
-
-.CX3J .daycell .weekday {
-  color: var(--theme-text-muted) !important;
-}
-
-.CX3J .gridCell.index {
-  color: var(--theme-text-muted) !important;
 }

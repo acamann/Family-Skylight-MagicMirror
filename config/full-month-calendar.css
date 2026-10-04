@@ -2,14 +2,6 @@
    Full Month Calendar View (MMM-CalendarExt3 / .CX3)
    ===================================================== */
 
-/* -----------------------------------------------------
-   1. Base MM Overrides & Native CX3 Variables
-   ----------------------------------------------------- */
-.dimmed { color: #666666; }
-.normal { color: #222222; }
-.bright { color: #000000; }
-header { color: #333333; border-bottom: 1px solid #cccccc; }
-
 .CX3 {
   --default-color: #000000 !important;
   --weekday-0-color: #000000 !important;
@@ -21,19 +13,13 @@ header { color: #333333; border-bottom: 1px solid #cccccc; }
   --cell-border-color: #e0e0e0 !important;
   --cellheaderheight: 34px;
 
-  height: 100vh !important;
-  width: 100% !important;
-  max-height: 100vh !important;
   display: flex !important;
   flex-direction: column !important;
   flex-grow: 1;
-  box-sizing: border-box !important;
-  padding: 10px !important;
-  margin: 0 !important;
 }
 
 /* -----------------------------------------------------
-   2. Hide Week Numbers (CW)
+   1. Hide Week Numbers (CW)
    ----------------------------------------------------- */
 .CX3 .cw,
 .CX3 .weekname,
@@ -42,7 +28,7 @@ header { color: #333333; border-bottom: 1px solid #cccccc; }
 }
 
 /* -----------------------------------------------------
-   3. 4-Week Flex Rows (Evenly Divided Heights)
+   2. 4-Week Flex Rows (Evenly Divided Heights)
    ----------------------------------------------------- */
 .CX3 .week {
   display: flex !important;
@@ -55,7 +41,7 @@ header { color: #333333; border-bottom: 1px solid #cccccc; }
 }
 
 /* -----------------------------------------------------
-   4. Cell Grid & Backgrounds
+   3. Cell Grid & Backgrounds
    ----------------------------------------------------- */
 .CX3 .cellContainer {
   height: 100% !important;
@@ -72,7 +58,7 @@ header { color: #333333; border-bottom: 1px solid #cccccc; }
 }
 
 /* -----------------------------------------------------
-   5. Header Weekday Names
+   4. Header Weekday Names
    ----------------------------------------------------- */
 .CX3 .headerContainer.weekGrid {
   display: grid !important;
@@ -94,7 +80,7 @@ header { color: #333333; border-bottom: 1px solid #cccccc; }
 }
 
 /* -----------------------------------------------------
-   6. Date Numbers & Today Highlight
+   5. Date Numbers & Today Highlight
    ----------------------------------------------------- */
 .CX3 .cellHeader {
   height: var(--cellheaderheight) !important;
@@ -139,7 +125,7 @@ header { color: #333333; border-bottom: 1px solid #cccccc; }
 }
 
 /* -----------------------------------------------------
-   7. Past Days Dimming
+   6. Past Days Dimming
    ----------------------------------------------------- */
 .CX3 .cell.past,
 .CX3 .event.past {
@@ -147,7 +133,7 @@ header { color: #333333; border-bottom: 1px solid #cccccc; }
 }
 
 /* -----------------------------------------------------
-   8. Event Stacking & Styling
+   7. Event Stacking & Styling
    ----------------------------------------------------- */
 .CX3 .eventContainer {
   position: absolute !important;
@@ -170,9 +156,6 @@ header { color: #333333; border-bottom: 1px solid #cccccc; }
 
 .CX3 .event .title {
   color: #000000 !important;
-  white-space: normal;
-  line-height: 1.15;
-  word-break: break-word;
   padding-top: 2px;
   padding-bottom: 2px;
 }
