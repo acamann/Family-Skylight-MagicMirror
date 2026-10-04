@@ -5,6 +5,11 @@
 .CX3J {
   --moduleHeight: 100vh !important;
   --moduleWidth: 100% !important;
+
+  /* Grid lines: match the month view's crisp light-gray borders */
+  --mainBorderStyle: 1px solid var(--theme-border) !important;
+  --subBorderStyle: 1px solid #f0f0f0 !important;
+
   color: var(--theme-text-primary);
 }
 
@@ -14,14 +19,85 @@
   box-sizing: border-box !important;
 }
 
+/* -----------------------------------------------------
+   1. Header Day Cells & Weekday Names
+   (uppercase, bold, centered, neutral text — matches CX3)
+   ----------------------------------------------------- */
 .CX3J .daycell .day {
   color: var(--theme-text-primary) !important;
+  font-weight: 700 !important;
 }
 
-.CX3J .daycell .weekday {
-  color: var(--theme-text-muted) !important;
+.CX3J .daycell .weekday,
+.CX3J .daycell.weekend_1 .weekday,
+.CX3J .daycell.weekend_2 .weekday {
+  color: var(--theme-text-primary) !important;
+  font-weight: 700 !important;
+  letter-spacing: 1px !important;
+  text-transform: uppercase !important;
 }
 
+/* -----------------------------------------------------
+   2. "Today" Highlight (Google-Blue pill badge, matching CX3)
+   ----------------------------------------------------- */
+.CX3J .daycell.today .day {
+  background-color: var(--theme-accent) !important;
+  color: #ffffff !important;
+  border-radius: 14px !important;
+  padding: 1px 0 !important;
+  font-weight: 700 !important;
+}
+
+/* Subtle blue outline around the active (today) column,
+   replacing the module default 2px gold border */
+.CX3J .dayBackground.today {
+  border-color: rgb(26 115 232 / 35%) !important;
+}
+
+.CX3J .cell.today {
+  border-left: 2px solid rgb(26 115 232 / 35%) !important;
+  border-right: 2px solid rgb(26 115 232 / 35%) !important;
+}
+
+.CX3J .cell.today.last {
+  border-bottom: 2px solid rgb(26 115 232 / 35%) !important;
+}
+
+/* -----------------------------------------------------
+   3. Time Index Column
+   ----------------------------------------------------- */
 .CX3J .gridCell.index {
   color: var(--theme-text-muted) !important;
+}
+
+/* -----------------------------------------------------
+   4. Past Time Dimming (matches CX3's elapsed-time cue)
+   ----------------------------------------------------- */
+
+/* Events that have already ended */
+.CX3J .event.passed {
+  opacity: 0.45 !important;
+}
+
+/* Time slots earlier than the current (`.now`) slot */
+.CX3J .main .cell:has(~ .gridCell.now),
+.CX3J .main .gridCell.index:has(~ .gridCell.now) {
+  opacity: 0.45 !important;
+}
+
+/* -----------------------------------------------------
+   5. "Now" Indicator (Google-Blue, matching CX3's today badge)
+   ----------------------------------------------------- */
+
+/* Dashed current-time line (module default: dashed red) */
+.CX3J .nowIndicator {
+  --indicatorStyle: 1px dashed rgb(26 115 232 / 50%) !important;
+  color: #ffffff !important;
+}
+
+/* Current-time label chip (module default: solid gold) */
+.CX3J .nowIndicator::after {
+  background-color: var(--theme-accent) !important;
+  color: #ffffff !important;
+  border-radius: 8px !important;
 }

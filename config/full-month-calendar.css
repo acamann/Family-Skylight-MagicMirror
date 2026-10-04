@@ -160,10 +160,14 @@
   padding-bottom: 2px;
 }
 
+/* All-day / multi-day events: keep as block chips, but use a subtle
+   outline-only treatment (calendar-colored border) to match the
+   minimalist month view rather than solid color blocks. */
 .CX3 .event.fullday,
 .CX3 .event.multiday {
   background-color: transparent !important;
   background: none !important;
   box-shadow: none !important;
-  border: none !important;
+  border: 1px solid var(--calendarColor, #9aa0a6) !important;
+  border-radius: 4px !important;
 }
