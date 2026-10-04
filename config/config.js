@@ -56,6 +56,7 @@ let config = {
         modules: [
           ["MMM-CalendarExt3Journal"], // 4-Day Calendar View
           ["MMM-CalendarExt3"], // full month calendar
+          ["MMM-CalendarExt3"], // full month calendar
           //"page-1": ["MMM-CalendarExt3"],        // Full Month Calendar
           //"page-2": ["MMM-Todoist"],             // Todo List
           //"page-3": ["weather"]                  // Weather View
@@ -96,55 +97,55 @@ let config = {
           // Sarah
           {
             name: "Sarah Work",
-            url: "${SECRET_SARAH_WORK_CALENDAR}",
+            url: "${CAL_SARAH_WORK_CALENDAR}",
             color: "#ffa033"
           },
 
           // Family
           {
             name: "Family",
-            url: "${SECRET_FAMILY_CALENDAR}",
+            url: "${CAL_FAMILY_CALENDAR}",
             color: "#7b603e"
           },
 
           // Daniel
           {
             name: "Daniel",
-            url: "${SECRET_DANIEL_CALENDAR}",
+            url: "${CAL_DANIEL_CALENDAR}",
             color: "#b7af5a"
           },
           {
             name: "Kapow",
-            url: "${SECRET_KAPOW_CALENDAR}",
+            url: "${CAL_KAPOW_CALENDAR}",
             color: "#b7af5a"
           },
           {
             name: "Rough Riders",
-            url: "${SECRET_ROUGH_RIDERS_CALENDAR}",
+            url: "${CAL_ROUGH_RIDERS_CALENDAR}",
             color: "#b7af5a"
           },
           
           // Luke
           {
             name: "Luke",
-            url: "${SECRET_LUKE_CALENDAR}",
+            url: "${CAL_LUKE_CALENDAR}",
             color: "#abcdde"
           },
           {
             name: "Mustangs",
-            url: "${SECRET_MUSTANGS_CALENDAR}",
+            url: "${CAL_MUSTANGS_CALENDAR}",
             color: "#abcdde"
           },
           
           // Ben
           {
             name: "Ben",
-            url: "${SECRET_BEN_CALENDAR}",
+            url: "${CAL_BEN_CALENDAR}",
             color: "#33FF57"
           },
           {
             name: "Green Ninjas",
-            url: "${SECRET_GREEN_NINJAS_CALENDAR}",
+            url: "${CAL_GREEN_NINJAS_CALENDAR}",
             color: "#33FF57"
           },
         ]
