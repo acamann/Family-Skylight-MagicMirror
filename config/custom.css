@@ -1,1 +1,65 @@
+/* =====================================================
+   App Shell & Style Orchestrator
+   ===================================================== */
+
+/* 1. Modular Subsystem Imports */
+@import url("nav-panel.css");
+@import url("calendar-common.css");
 @import url("full-month-calendar.css");
+@import url("weekly-calendar.css");
+
+/* -----------------------------------------------------
+   2. Global Design Tokens
+   ----------------------------------------------------- */
+:root {
+  --nav-sidebar-width: 50px;
+  --nav-sidebar-bg: #49536A;
+  --nav-icon-size: 26px;
+  --theme-bg: #ffffff;
+  --theme-border: #e0e0e0;
+  --theme-text-primary: #202124;
+  --theme-text-muted: #5f6368;
+  --theme-accent: #1a73e8;
+}
+
+/* -----------------------------------------------------
+   3. Base Body Reset
+   ----------------------------------------------------- */
+html, body {
+  background-color: var(--theme-bg) !important;
+  color: var(--theme-text-primary) !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  height: 100vh !important;
+  width: 100vw !important;
+  overflow: hidden !important;
+}
+
+/* -----------------------------------------------------
+   4. Main Workspace Bounds (Remaining screen next to nav dock)
+   ----------------------------------------------------- */
+.region.fullscreen,
+.region.fullscreen.below {
+  position: absolute !important;
+  top: 0 !important;
+  left: var(--nav-sidebar-width) !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  width: calc(100vw - var(--nav-sidebar-width)) !important;
+  height: 100vh !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  box-sizing: border-box !important;
+  overflow: hidden !important;
+  pointer-events: auto !important;
+}
+
+.region.fullscreen.below .container,
+.region.fullscreen.below .module,
+.region.fullscreen.below .module-content {
+  width: 100% !important;
+  height: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  box-sizing: border-box !important;
+}

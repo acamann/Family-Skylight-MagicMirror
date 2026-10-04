@@ -1,0 +1,27 @@
+/* =====================================================
+   Weekly Timeline View (MMM-CalendarExt3Journal / .CX3J)
+   ===================================================== */
+
+.CX3J {
+  --moduleHeight: 100vh !important;
+  --moduleWidth: 100% !important;
+  color: var(--theme-text-primary);
+}
+
+.CX3J .board {
+  height: calc(100vh - 20px) !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+.CX3J .daycell .day {
+  color: var(--theme-text-primary) !important;
+}
+
+.CX3J .daycell .weekday {
+  color: var(--theme-text-muted) !important;
+}
+
+.CX3J .gridCell.index {
+  color: var(--theme-text-muted) !important;
+}

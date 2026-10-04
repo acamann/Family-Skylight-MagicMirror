@@ -1,0 +1,178 @@
+/* =====================================================
+   Navigation Panel Dock & Touch Controls (MMM-page-indicator)
+   ===================================================== */
+
+/* -----------------------------------------------------
+   1. Left Navigation Sidebar Dock (#49536A, 50px wide, full 100vh height)
+   ----------------------------------------------------- */
+.region.top.bar {
+  pointer-events: none !important;
+}
+
+.region.top.left {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  bottom: 0 !important;
+  width: var(--nav-sidebar-width) !important;
+  height: 100vh !important;
+  max-width: var(--nav-sidebar-width) !important;
+  z-index: 9999 !important;
+  background-color: var(--nav-sidebar-bg) !important;
+  border-right: none !important;
+  box-sizing: border-box !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  pointer-events: auto !important;
+  overflow: hidden !important;
+  user-select: none !important;
+}
+
+.region.top.left .container {
+  width: 100% !important;
+  height: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  box-sizing: border-box !important;
+  background-color: var(--nav-sidebar-bg) !important;
+}
+
+.region.top.left .module.MMM-page-indicator {
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  box-sizing: border-box !important;
+}
+
+.region.top.left .module.MMM-page-indicator .module-content {
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+}
+
+.MMM-page-indicator .module-content > div {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* -----------------------------------------------------
+   2. Square Touchable Navigation Buttons with SVG Icons
+   ----------------------------------------------------- */
+.MMM-page-indicator .circle-wrapper {
+  position: relative !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: var(--nav-sidebar-width) !important;
+  height: var(--nav-sidebar-width) !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  box-sizing: border-box !important;
+  cursor: pointer !important;
+  background-color: var(--nav-sidebar-bg) !important;
+  border-width: 0 0 1px 0 !important;
+  border-style: solid !important;
+  border-color: #ffffff !important;
+  touch-action: manipulation !important;
+  transition: background-color 0.15s ease !important;
+}
+
+/* Active option background: solid white */
+.MMM-page-indicator .circle-wrapper:has(.active-page) {
+  background-color: #ffffff !important;
+}
+
+/* Ensure touchable icon fills entire square touch target */
+.MMM-page-indicator .circle-wrapper .indicator {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 100% !important;
+  height: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  font-size: 0 !important; /* Suppress FontAwesome icon font */
+  line-height: 1 !important;
+  cursor: pointer !important;
+  box-sizing: border-box !important;
+  opacity: 1 !important;
+  transition: background-color 0.15s ease !important;
+}
+
+/* Active indicator element background: white */
+.MMM-page-indicator .circle-wrapper .indicator.active-page {
+  background-color: #ffffff !important;
+}
+
+.MMM-page-indicator .circle-wrapper .indicator:not(.active-page) {
+  background-color: transparent !important;
+}
+
+/* Base mask styling for SVG icons */
+.MMM-page-indicator .indicator::before {
+  content: "" !important;
+  display: block !important;
+  width: var(--nav-icon-size) !important;
+  height: var(--nav-icon-size) !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  font-family: inherit !important;
+  -webkit-mask-size: contain !important;
+  mask-size: contain !important;
+  -webkit-mask-repeat: no-repeat !important;
+  mask-repeat: no-repeat !important;
+  -webkit-mask-position: center !important;
+  mask-position: center !important;
+  transition: background-color 0.15s ease !important;
+}
+
+/* Page 0 Button Icon: calendar_view_week.svg */
+.MMM-page-indicator .indicator.page-0::before {
+  -webkit-mask-image: url("icons/calendar_view_week.svg") !important;
+  mask-image: url("icons/calendar_view_week.svg") !important;
+}
+
+/* Page 1 Button Icon: calendar_month.svg */
+.MMM-page-indicator .indicator.page-1::before {
+  -webkit-mask-image: url("icons/calendar_month.svg") !important;
+  mask-image: url("icons/calendar_month.svg") !important;
+}
+
+/* Inactive Icon Line Color: White */
+.MMM-page-indicator .indicator:not(.active-page)::before {
+  background-color: #ffffff !important;
+}
+
+/* Active Icon Line Color: #49536A */
+.MMM-page-indicator .indicator.active-page::before {
+  background-color: #49536A !important;
+}
+
+/* Touch active / press feedback */
+.MMM-page-indicator .circle-wrapper:not(:has(.active-page)):active {
+  background-color: #3b4457 !important;
+}
+
+.MMM-page-indicator .circle-wrapper:has(.active-page):active {
+  background-color: #f0f0f0 !important;
+}
+
+/* Suppress hover tooltips on touch display */
+.MMM-page-indicator .tooltip {
+  display: none !important;
+}

@@ -1,5 +1,3 @@
-const familyCalendars = require("./calendars.js")
-
 /* MM Config
  *
  * For more information on how you can configure this file
@@ -42,12 +40,40 @@ let config = {
   watchTargets: [
     "css/main.css",
     "config/config.js",
-    "config/calendars.js",
+    "config/config.env",
     "config/custom.css",
-    "config/full-month-calendar.css"
+    "config/nav-panel.css",
+    "config/calendar-common.css",
+    "config/full-month-calendar.css",
+    "config/weekly-calendar.css"
   ],
 
 	modules: [
+    {
+      module: "MMM-pages",
+      config: {
+        animationTime: 0, // Instant page transitions
+        modules: [
+          ["MMM-CalendarExt3Journal"], // 4-Day Calendar View
+          ["MMM-CalendarExt3"], // full month calendar
+          //"page-1": ["MMM-CalendarExt3"],        // Full Month Calendar
+          //"page-2": ["MMM-Todoist"],             // Todo List
+          //"page-3": ["weather"]                  // Weather View
+        ],
+        fixed: [
+          "MMM-page-indicator" // Or your touch navigation module, set to 'top_left'
+        ]
+      }
+    },
+    {
+      module: 'MMM-page-indicator',
+      position: 'top_left',
+      config: {
+        pages: 2,
+        activeBright: true,
+        showPageNumberOnHover: false
+      }
+    },
 		{
 			module: "alert",
 		},
@@ -65,15 +91,94 @@ let config = {
 			// position: "top_left",
 			config: {
 				maximumNumberOfDays: 40,
-        calendars: familyCalendars
+        calendars: [
+
+          // Sarah
+          {
+            name: "Sarah Work",
+            url: "${SECRET_SARAH_WORK_CALENDAR}",
+            color: "#ffa033"
+          },
+
+          // Family
+          {
+            name: "Family",
+            url: "${SECRET_FAMILY_CALENDAR}",
+            color: "#7b603e"
+          },
+
+          // Daniel
+          {
+            name: "Daniel",
+            url: "${SECRET_DANIEL_CALENDAR}",
+            color: "#b7af5a"
+          },
+          {
+            name: "Kapow",
+            url: "${SECRET_KAPOW_CALENDAR}",
+            color: "#b7af5a"
+          },
+          {
+            name: "Rough Riders",
+            url: "${SECRET_ROUGH_RIDERS_CALENDAR}",
+            color: "#b7af5a"
+          },
+          
+          // Luke
+          {
+            name: "Luke",
+            url: "${SECRET_LUKE_CALENDAR}",
+            color: "#abcdde"
+          },
+          {
+            name: "Mustangs",
+            url: "${SECRET_MUSTANGS_CALENDAR}",
+            color: "#abcdde"
+          },
+          
+          // Ben
+          {
+            name: "Ben",
+            url: "${SECRET_BEN_CALENDAR}",
+            color: "#33FF57"
+          },
+          {
+            name: "Green Ninjas",
+            url: "${SECRET_GREEN_NINJAS_CALENDAR}",
+            color: "#33FF57"
+          },
+        ]
 			}
 		},
+    {
+      module: "MMM-CalendarExt3Journal",
+      position: "fullscreen_below",
+      config: {
+        animationSpeed: 0, // Prevents module re-rendering fade cycles
+        height: "100vh",
+        width: "100%",
+        instanceId: "weekCalendar",
+        locale: 'en-US',
+        //maxLaneThreshold: 4,
+        hourLength: 11,
+        beginHour: 12,
+        staticTime: true,
+        staticWeek: false,
+        dayIndex: 0,
+        days: 6,
+        calendarSet: [], // Leave empty to pull from all default calendars
+        fontSize: "16px",
+        eventHeight: "22px",
+        refreshInterval: 5 * 60 * 1000 // Refreshes every 5 minute
+      }
+    },
     {
       module: "MMM-CalendarExt3",
       position: "fullscreen_below", // Choose where this displays on your screen
       config: {
+        animationSpeed: 0, // Prevents module re-rendering fade cycles
         mode: "week",
-        instanceId: "basicCalendar",
+        instanceId: "fourWeekCalendar",
         locale: 'en-US',
         weekIndex: 0,
         weeksInView: 4,

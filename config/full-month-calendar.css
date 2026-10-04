@@ -1,447 +1,7 @@
-/* new styles */
+/* =====================================================
+   Full Month Calendar View (MMM-CalendarExt3 / .CX3)
+   ===================================================== */
 
-/* Remove borders to create a cleaner, floating look */
- /* .CX3 .cell {
-   border: none !important;
-    background: rgba(255, 255, 255, 0.03);
-    margin: 2px;
-} */
-
-/* Make the calendar headers less intrusive */
-/* .CX3 .weekHeader {
-    font-size: 12px;
-    opacity: 0.5;
-    text-transform: uppercase;
-} */
-
-/* Style the events to be more minimalist */
-/* .CX3 .event {
-    background: transparent !important;
-    padding: 2px 5px !important;
-} */
-
-/* Hide the 'CW' (Calendar Week) numbers if you don't need them */
-/* .CX3 .weekIndex {
-    display: none;
-} */
-
-/* -----------------------------------------------------
-   1. Invert MagicMirror's Global Dark Theme
-   ----------------------------------------------------- */
-body {
-  background-color: #ffffff;
-  color: #222222;
-  margin: 0;
-  padding: 0;
-  height: 100vh;
-  width: 100vw;
-}
-
-/* Override default text colors for standard MM classes */
-.dimmed { color: #666666; }
-.normal { color: #222222; }
-.bright { color: #000000; }
-header { color: #333333; border-bottom: 1px solid #cccccc; }
-
-/* -----------------------------------------------------
-   2. Maximize MMM-CalendarExt3 Layout
-   ----------------------------------------------------- */
-.CX3 {
-  /* Use CSS variables native to CX3 for styling */
-  --default-color: #222222;
-  --background-color: #ffffff;
-  --cell-bg-color: #ffffff;
-  --cell-border-color: #dddddd;
-  --today-bg-color: #e6f0ff; /* Subtle blue highlight for today */
-  
-  /* Force it to fill the screen */
-  width: 100vw !important;
-  height: 100vh !important;
-  padding: 15px; 
-  box-sizing: border-box;
-}
-
-/* -----------------------------------------------------
-   3. Optimize Event Title Visibility
-   ----------------------------------------------------- */
-/* Allow event titles to wrap to a second line instead of truncating */
-.CX3 .event .title {
-  white-space: normal;
-  line-height: 1.1;
-  word-wrap: break-word;
-  padding-top: 2px;
-  padding-bottom: 2px;
-}
-
-/* Remove the rounded pill shape for a flatter, Google Calendar look */
-.CX3 .event {
-  border-radius: 4px;
-  border: 1px solid rgba(0,0,0,0.1);
-}
-
-/* -----------------------------------------------------
-   4. Reclaim Screen Space
-   ----------------------------------------------------- */
-/* Stretch the fullscreen region to the exact edges */
-.region.fullscreen {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-}
-
-/* Take 2 */
-
-/* -----------------------------------------------------
-   1. Lock the Viewport to Prevent Scrolling
-   ----------------------------------------------------- */
-body, html {
-  overflow: hidden;
-  height: 100vh;
-}
-
-/* Ensure the container region fills exactly 100% of the height */
-.region.fullscreen,
-.region.fullscreen_below {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-
-/* -----------------------------------------------------
-   2. Turn CX3 into a Strict Flex Container
-   ----------------------------------------------------- */
-.CX3 {
-  height: 100% !important;
-  max-height: 100vh !important;
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-  box-sizing: border-box;
-  margin: 0 !important; /* Removes default MM module margins */
-}
-
-/* -----------------------------------------------------
-   3. Distribute Week Heights Evenly
-   ----------------------------------------------------- */
-/* The grid wraps all the weeks */
-.CX3 .grid {
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-  height: 100%;
-}
-
-/* Make each of the 4 weeks take up exactly 25% of the remaining height */
-.CX3 .week {
-  flex-grow: 1;
-  flex-basis: 0;
-  display: flex;
-  flex-direction: row; /* Keeps days rendering side-by-side */
-  
-  /* CRITICAL: forces the week to shrink to fit the grid, 
-     ignoring the height of the events inside it */
-  min-height: 0 !important; 
-  overflow: hidden;
-}
-
-/* -----------------------------------------------------
-   4. Constrain the Days and Events
-   ----------------------------------------------------- */
-.CX3 .day {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden; /* Hides events that don't fit in the flex box */
-}
-
-/* Take 3 */
-
-/* -----------------------------------------------------
-   1. Base Screen Reset & Connected 4-Week Grid
-   ----------------------------------------------------- */
-html, body {
-  background-color: #ffffff !important;
-  color: #222222 !important;
-  margin: 0;
-  padding: 0;
-  height: 100vh;
-  width: 100vw;
-  overflow: hidden;
-}
-
-.region.fullscreen_below,
-.region.fullscreen_below .container,
-.region.fullscreen_below .module.MMM-CalendarExt3,
-.region.fullscreen_below .module-content {
-  height: 100vh !important;
-  width: 100vw !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-
-.CX3 {
-  --default-color: #222222;
-  --background-color: #ffffff;
-  --cell-bg-color: #ffffff;
-  --cell-border-color: #dddddd;
-  --today-bg-color: #e6f0ff;
-  --cellheaderheight: 28px; /* Dedicated vertical space for date numbers */
-  
-  height: 100vh !important;
-  width: 100vw !important;
-  box-sizing: border-box;
-  padding: 10px;
-}
-
-/* Divide calendar into 4 equal, connected week rows */
-.CX3 .weeks {
-  height: calc(100vh - 20px) !important;
-  display: grid !important;
-  grid-template-rows: repeat(4, 1fr) !important;
-  gap: 0px !important;
-}
-
-.CX3 .week {
-  position: relative !important;
-  height: 100% !important;
-  overflow: hidden !important; /* Clips overflowing bottom events */
-}
-
-/* -----------------------------------------------------
-   2. Seamless Cell Grid Backgrounds
-   ----------------------------------------------------- */
-.CX3 .cellContainer {
-  height: 100% !important;
-}
-
-.CX3 .cell {
-  height: 100% !important;
-  border: 1px solid var(--cell-border-color) !important;
-  box-sizing: border-box;
-}
-
-.CX3 .cellHeader {
-  height: var(--cellheaderheight) !important;
-  line-height: var(--cellheaderheight) !important;
-  padding: 0 6px;
-  font-weight: bold;
-}
-
-/* -----------------------------------------------------
-   3. Force Top-Aligned Event Stacking & Bottom Clipping
-   ----------------------------------------------------- */
-.CX3 .eventContainer {
-  position: absolute !important;
-  top: 0 !important;
-  left: 0 !important;
-  right: 0 !important;
-  bottom: 0 !important;
-  height: 100% !important;
-  align-content: start !important; /* Forces row 1 (date) and events to anchor at top */
-  justify-content: start !important;
-  overflow: hidden !important;
-}
-
-.CX3 .event {
-  border-radius: 3px;
-}
-
-.CX3 .event .title {
-  white-space: normal;
-  line-height: 1.15;
-  word-break: break-word;
-}
-
-/*
-good.  Now, Sunday column shows as Red text, Saturday column shows as blue text (day name and date numbers).  Weekdays are hidden as white day names and numbers.  The event titles are almost all showing as White.  the prior days are showing as white background, and future days are showing as light gray background.  the current active day has no border.  I'd like to update all of this so that all Day names and date numbers are black.  I'd like to make all day backgrounds as white.  I'd like to make all text as black.  I'd like to "fade"/increase opacity within the past days.  I'd like to highlight the day number in Blue background with rounded corners and white text for today's date to draw attention to it
-*/
-
-/* -----------------------------------------------------
-   1. Base Setup & Global White Background
-   ----------------------------------------------------- */
-html, body {
-  background-color: #ffffff !important;
-  color: #000000 !important;
-  margin: 0;
-  padding: 0;
-  height: 100vh;
-  width: 100vw;
-  overflow: hidden;
-}
-
-.region.fullscreen_below,
-.region.fullscreen_below .container,
-.region.fullscreen_below .module.MMM-CalendarExt3,
-.region.fullscreen_below .module-content {
-  height: 100vh !important;
-  width: 100vw !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-
-/* -----------------------------------------------------
-   2. Grid Layout & Uniform White Cells
-   ----------------------------------------------------- */
-.CX3 {
-  /* CX3 Variable Overrides */
-  --default-color: #000000 !important;
-  --weekday-0-color: #000000 !important; /* Sunday */
-  --weekday-6-color: #000000 !important; /* Saturday */
-  --sat-color: #000000 !important;
-  --sun-color: #000000 !important;
-  --cell-bg-color: #ffffff !important;
-  --today-bg-color: #ffffff !important;
-  --cell-border-color: #e0e0e0 !important;
-  --cellheaderheight: 32px;
-
-  height: 100vh !important;
-  width: 100vw !important;
-  box-sizing: border-box;
-  padding: 10px;
-}
-
-.CX3 .weeks {
-  height: calc(100vh - 20px) !important;
-  display: grid !important;
-  grid-template-rows: repeat(4, 1fr) !important;
-  gap: 0px !important;
-}
-
-.CX3 .week {
-  position: relative !important;
-  height: 100% !important;
-  overflow: hidden !important;
-}
-
-/* Force all day cells (past, present, future) to solid white with consistent borders */
-.CX3 .cell,
-.CX3 .cell.past,
-.CX3 .cell.future,
-.CX3 .cell.today {
-  background-color: #ffffff !important;
-  border: 1px solid #e0e0e0 !important;
-  box-sizing: border-box;
-}
-
-/* -----------------------------------------------------
-   3. Force All Text & Date Numbers to Black
-   ----------------------------------------------------- */
-/* Column header day names (Sun, Mon, Tue...) */
-.CX3 .header .weekday,
-.CX3 .header .weekday.sun,
-.CX3 .header .weekday.sat {
-  color: #000000 !important;
-  font-weight: 600;
-}
-
-/* Day date numbers */
-.CX3 .cellHeader,
-.CX3 .cellHeader *,
-.CX3 .cell.sun .cellHeader,
-.CX3 .cell.sat .cellHeader {
-  color: #000000 !important;
-}
-
-/* Event titles */
-.CX3 .event,
-.CX3 .event .title {
-  color: #000000 !important;
-}
-
-/* -----------------------------------------------------
-   4. Today's Blue Pill Date Highlight
-   ----------------------------------------------------- */
-.CX3 .cell.today .cellHeader {
-  background-color: #1a73e8 !important; /* Google Blue */
-  border-radius: 14px !important;
-  padding: 2px 10px !important;
-  display: inline-block !important;
-  margin: 3px !important;
-  font-weight: bold !important;
-  line-height: 1.2 !important;
-  height: auto !important;
-}
-
-/* Force text inside today's badge to white */
-.CX3 .cell.today .cellHeader,
-.CX3 .cell.today .cellHeader * {
-  color: #ffffff !important;
-}
-
-/* -----------------------------------------------------
-   5. Dimmed Opacity for Past Days
-   ----------------------------------------------------- */
-.CX3 .cell.past,
-.CX3 .event.past {
-  opacity: 0.40 !important;
-}
-
-/* -----------------------------------------------------
-   6. Top-Aligned Event Stacking
-   ----------------------------------------------------- */
-.CX3 .eventContainer {
-  position: absolute !important;
-  top: 0 !important;
-  left: 0 !important;
-  right: 0 !important;
-  bottom: 0 !important;
-  height: 100% !important;
-  align-content: start !important;
-  justify-content: start !important;
-  overflow: hidden !important;
-}
-
-.CX3 .event {
-  border-radius: 4px;
-}
-
-.CX3 .event .title {
-  white-space: normal;
-  line-height: 1.15;
-  word-break: break-word;
-}
-
-/*
-good. next, I don't want to show ongoing week count ("CW 37"...). I want to center the day number in the first row of the cell. I want to center the day name at the top, turn it to all capitalized, and truncate to only the first 3 letters of the day name. I want to also ensure that the day's events don't start at the exact top of the cell, since they are colliding with the date number. Pad to allow vertical space for the date number
-*/
-
-/* -----------------------------------------------------
-   1. Base Setup & Global White Background
-   ----------------------------------------------------- */
-html, body {
-  background-color: #ffffff !important;
-  color: #000000 !important;
-  margin: 0;
-  padding: 0;
-  height: 100vh;
-  width: 100vw;
-  overflow: hidden;
-}
-
-.region.fullscreen_below,
-.region.fullscreen_below .container,
-.region.fullscreen_below .module.MMM-CalendarExt3,
-.region.fullscreen_below .module-content {
-  height: 100vh !important;
-  width: 100vw !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-
-/* -----------------------------------------------------
-   2. Grid Layout & Hide Week Numbers (CW)
-   ----------------------------------------------------- */
 .CX3 {
   --default-color: #000000 !important;
   --weekday-0-color: #000000 !important;
@@ -451,56 +11,76 @@ html, body {
   --cell-bg-color: #ffffff !important;
   --today-bg-color: #ffffff !important;
   --cell-border-color: #e0e0e0 !important;
-  --cellheaderheight: 34px; /* Vertical height reserved for centered date numbers */
+  --cellheaderheight: 34px;
 
-  height: 100vh !important;
-  width: 100vw !important;
-  box-sizing: border-box;
-  padding: 10px;
+  display: flex !important;
+  flex-direction: column !important;
+  flex-grow: 1;
 }
 
-/* Hide CW / Week Number elements */
+/* -----------------------------------------------------
+   1. Hide Week Numbers (CW)
+   ----------------------------------------------------- */
 .CX3 .cw,
 .CX3 .weekname,
 .CX3 .weekNumber {
   display: none !important;
 }
 
-.CX3 .weeks {
-  height: calc(100vh - 40px) !important;
-  display: grid !important;
-  grid-template-rows: repeat(4, 1fr) !important;
-  gap: 0px !important;
+/* -----------------------------------------------------
+   2. 4-Week Flex Rows (Evenly Divided Heights)
+   ----------------------------------------------------- */
+.CX3 .week {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-grow: 1 !important;
+  flex-basis: 0 !important;
+  min-height: 0 !important;
+  position: relative !important;
+  overflow: hidden !important;
 }
 
-.CX3 .week {
-  position: relative !important;
+/* -----------------------------------------------------
+   3. Cell Grid & Backgrounds
+   ----------------------------------------------------- */
+.CX3 .cellContainer {
   height: 100% !important;
-  overflow: hidden !important;
 }
 
 .CX3 .cell,
 .CX3 .cell.past,
 .CX3 .cell.future,
 .CX3 .cell.today {
+  height: 100% !important;
   background-color: #ffffff !important;
   border: 1px solid #e0e0e0 !important;
   box-sizing: border-box;
 }
 
 /* -----------------------------------------------------
-   3. Header Day Names (Centered & Uppercase)
+   4. Header Weekday Names
    ----------------------------------------------------- */
-.CX3 .header .weekday {
-  color: #000000 !important;
-  font-weight: 700;
+.CX3 .headerContainer.weekGrid {
+  display: grid !important;
+  grid-template-columns: repeat(7, 1fr) !important;
+  width: 100% !important;
+}
+
+.CX3 .headerContainer.weekGrid > div,
+.CX3 .headerContainer .weekday,
+.CX3 .headerContainer .weekday * {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
   text-align: center !important;
-  text-transform: uppercase !important; /* SUN, MON, TUE... */
-  letter-spacing: 1px;
+  text-transform: uppercase !important;
+  color: #000000 !important;
+  font-weight: 700 !important;
+  letter-spacing: 1px !important;
 }
 
 /* -----------------------------------------------------
-   4. Centered Date Numbers & Today Highlight
+   5. Date Numbers & Today Highlight
    ----------------------------------------------------- */
 .CX3 .cellHeader {
   height: var(--cellheaderheight) !important;
@@ -509,20 +89,21 @@ html, body {
   color: #000000 !important;
   width: 100% !important;
   box-sizing: border-box;
+  padding: 0 6px;
+  font-weight: bold;
 }
 
 .CX3 .cellHeader * {
   color: #000000 !important;
 }
 
-/* Today's Blue Pill - Centered */
 .CX3 .cell.today .cellHeader {
-  background-color: #1a73e8 !important;
+  background-color: unset !important;
   color: #ffffff !important;
   border-radius: 14px !important;
   padding: 0 10px !important;
   display: inline-block !important;
-  width: auto !important;
+  width: 100% !important;
   height: 26px !important;
   line-height: 26px !important;
   margin: 4px auto !important;
@@ -533,10 +114,27 @@ html, body {
   color: #ffffff !important;
 }
 
+.CX3 .cellDate {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.CX3 .today .cellDate {
+  background-color: #1a73e8 !important;
+}
+
 /* -----------------------------------------------------
-   5. Event Offset & Top-Aligned Stacking
+   6. Past Days Dimming
    ----------------------------------------------------- */
-/* Offset event container by cellheaderheight to prevent overlapping dates */
+.CX3 .cell.past,
+.CX3 .event.past {
+  opacity: 0.40 !important;
+}
+
+/* -----------------------------------------------------
+   7. Event Stacking & Styling
+   ----------------------------------------------------- */
 .CX3 .eventContainer {
   position: absolute !important;
   top: var(--cellheaderheight) !important;
@@ -550,81 +148,18 @@ html, body {
   padding-top: 2px;
 }
 
-.CX3 .cell.past,
-.CX3 .event.past {
-  opacity: 0.40 !important;
-}
-
 .CX3 .event {
   border-radius: 4px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
   color: #000000 !important;
 }
 
 .CX3 .event .title {
   color: #000000 !important;
-  white-space: normal;
-  line-height: 1.15;
-  word-break: break-word;
+  padding-top: 2px;
+  padding-bottom: 2px;
 }
 
-/*
- Andy trying to get the date number headers to look right
-*/
-
-.CX3 .cellDate {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.CX3 .day {
-  flex: unset;
-}
-
-.CX3 .today .cellDate {
-  background-color: unset !important;
-  background-color:#1a73e8 !important;
-}
-
-.CX3 .cell.today .cellHeader {
-  background-color: unset !important;
-  width: 100% !important;
-}
-
-/*
-good. Now, none of the day name changes have taken effect. they're all within headerContainer weekGrid class div
-*/
-
-/* -----------------------------------------------------
-   3. Header Day Names (Targeting headerContainer.weekGrid)
-   ----------------------------------------------------- */
-.CX3 .headerContainer.weekGrid {
-  display: grid !important;
-  grid-template-columns: repeat(7, 1fr) !important;
-  width: 100% !important;
-}
-
-/* Target every child div/weekday header cell directly */
-.CX3 .headerContainer.weekGrid > div,
-.CX3 .headerContainer .weekday,
-.CX3 .headerContainer .weekday * {
-  display: flex !important;
-  justify-content: center !important;
-  align-items: center !important;
-  text-align: center !important;
-  text-transform: uppercase !important; /* SUN, MON, TUE... */
-  color: #000000 !important;
-  font-weight: 700 !important;
-  letter-spacing: 1px !important;
-}
-
-/*
-currently the full day events have filled in background (and black lettering like the others, making them hard to read). I'd like them to have no background color, and instead the lack of a time and being first displayed for that day will indicate "full day" nature
-*/
-
-/* -----------------------------------------------------
-   7. Strip Backgrounds from All-Day & Multi-Day Events
-   ----------------------------------------------------- */
 .CX3 .event.fullday,
 .CX3 .event.multiday {
   background-color: transparent !important;

@@ -78,4 +78,4 @@ yarn.lock
 tests/**/.tmp/
 
 # Ignore secret files, kept locally
-config/calendars.js
+config/config.env
