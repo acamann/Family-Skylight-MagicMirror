@@ -160,6 +160,11 @@
   padding-bottom: 2px;
 }
 
+/* Match the weekly timeline: semibold instead of full bold */
+.CX3 .event .headline .title {
+  font-weight: 600 !important;
+}
+
 /* All-day / multi-day events: filled chips with contrasting text,
    matching the weekly timeline's block style. */
 .CX3 .event.fullday,

@@ -251,3 +251,27 @@
 .CX3J .event.single .location:empty {
   display: none !important;
 }
+
+/* -----------------------------------------------------
+   7. Full-Day / Multi-Day Event Chips (.notsingle)
+   Slightly taller chips, and the icon uses the same
+   subtle tinted-color treatment as timed events.
+   ----------------------------------------------------- */
+
+.CX3J .event.notsingle {
+  height: auto !important;
+  padding: 4px 6px !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+.CX3J .event.notsingle .headline {
+  align-items: center !important;
+  width: 100%;
+}
+
+.CX3J .event.notsingle .symbol {
+  margin-right: 4px !important;
+  font-size: 1.2em !important;
+  color: color-mix(in srgb, var(--calendarColor) 55%, #ffffff) !important;
+}
