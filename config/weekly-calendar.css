@@ -126,9 +126,13 @@
   opacity: 0.45 !important;
 }
 
-/* Time slots earlier than the current (`.now`) slot */
-.CX3J .main .cell:has(~ .gridCell.now),
-.CX3J .main .gridCell.index:has(~ .gridCell.now) {
+/* Time slots earlier than the current (`.now`) slot.
+   Scoped to today's column (`.cell.today`) — without this, the
+   `:has(~ .gridCell.now)` match applies to every column's cells in
+   earlier rows, so future days' past-hour slots (and any events in
+   them) incorrectly fade once that time-of-day has elapsed. */
+.CX3J .main .cell.today.notnow:has(~ .gridCell.now),
+.CX3J .main .gridCell.index.notnow:has(~ .gridCell.now) {
   opacity: 0.45 !important;
 }
 
