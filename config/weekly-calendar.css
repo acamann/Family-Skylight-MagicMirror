@@ -171,13 +171,25 @@
 .CX3J .event.single .symbol {
   position: absolute !important;
   top: 4px !important;
-  right: 6px !important;
+  right: 0px !important;
   margin-right: 0 !important;
   font-size: 2.4em !important;
   line-height: 1 !important;
-  color: color-mix(in srgb, var(--calendarColor) 65%, var(--oppositeColor)) !important;
+  color: color-mix(in srgb, var(--calendarColor) 55%, #ffffff) !important;
   pointer-events: none;
   z-index: 0;
+}
+
+/* Treat the event box as a size container so the icon can
+   be dropped when the event isn't tall enough to fit it */
+.CX3J .event.single {
+  container-type: size;
+}
+
+@container (max-height: 32px) {
+  .CX3J .event.single .symbol {
+    display: none !important;
+  }
 }
 
 /* Text layers sit above the icon */

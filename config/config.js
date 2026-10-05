@@ -160,7 +160,7 @@ let config = {
         locale: 'en-US',
         dateHeaderOptions: { month: 'short', day: 'numeric', weekday: 'long' },
         //maxLaneThreshold: 4,
-        hourLength: 18,
+        hourLength: 17,
         beginHour: 6,
         staticTime: true,
         staticWeek: false,
