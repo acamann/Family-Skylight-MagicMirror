@@ -131,14 +131,35 @@
    `:has(~ .gridCell.now)` match applies to every column's cells in
    earlier rows, so future days' past-hour slots (and any events in
    them) incorrectly fade once that time-of-day has elapsed. */
-.CX3J .main .cell.today.notnow:has(~ .gridCell.now),
+/* Index labels of elapsed slots stay dimmed */
 .CX3J .main .gridCell.index.notnow:has(~ .gridCell.now) {
   opacity: 0.45 !important;
+}
+
+/* Today's past slots: overlay fade instead of cell opacity, so the
+   blue "today" column borders keep their full strength while the slot
+   contents (grid, events) still wash out. */
+.CX3J .main .cell.today.notnow:has(~ .gridCell.now)::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: var(--theme-bg, #ffffff);
+  opacity: 0.55;
+  pointer-events: none;
 }
 
 /* -----------------------------------------------------
    5. "Now" Indicator (Google-Blue, matching CX3's today badge)
    ----------------------------------------------------- */
+
+/* Limit the "now" line to today's column only (today is the first day
+   column with dayIndex: 0 / staticWeek: false). The label chip is
+   re-anchored over the index column. */
+.CX3J .nowIndicator {
+  left: var(--indexWidth) !important;
+  right: auto !important;
+  width: calc((100% - var(--indexWidth)) / var(--days)) !important;
+}
 
 /* Dashed current-time line (module default: dashed red) */
 .CX3J .nowIndicator {
@@ -148,6 +169,7 @@
 
 /* Current-time label chip (module default: solid gold) */
 .CX3J .nowIndicator::after {
+  left: calc(-1 * var(--indexWidth)) !important;
   background-color: var(--theme-accent) !important;
   color: #ffffff !important;
   border-radius: 8px !important;
