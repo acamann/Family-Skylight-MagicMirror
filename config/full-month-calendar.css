@@ -47,11 +47,19 @@
   height: 100% !important;
 }
 
+/* Pin the implicit row to the container height so cells can't push
+   it open (today's cell was measuring 258px in a 175px track) */
+.CX3 .cellContainer.weekGrid {
+  grid-template-rows: minmax(0, 1fr) !important;
+}
+
 .CX3 .cell,
 .CX3 .cell.past,
 .CX3 .cell.future,
 .CX3 .cell.today {
   height: 100% !important;
+  min-height: 0 !important;
+  overflow: hidden !important;
   background-color: #ffffff !important;
   border: 1px solid #e0e0e0 !important;
   box-sizing: border-box;
@@ -122,6 +130,16 @@
 
 .CX3 .today .cellDate {
   background-color: #1a73e8 !important;
+}
+
+/* Blue outline around today's cell, matching the weekly view's
+   today-column border (replaces the module default gold/gray).
+   z-index keeps neighboring cells' gray borders from painting
+   over the bottom edge. */
+.CX3 .cell.today {
+  border: 2px solid rgb(26 115 232 / 35%) !important;
+  position: relative !important;
+  z-index: 1 !important;
 }
 
 /* -----------------------------------------------------
