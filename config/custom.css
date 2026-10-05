@@ -38,7 +38,6 @@ html, body {
 /* -----------------------------------------------------
    4. Main Workspace Bounds (Remaining screen next to nav dock)
    ----------------------------------------------------- */
-.region.fullscreen,
 .region.fullscreen.below {
   position: absolute !important;
   top: 0 !important;
@@ -52,6 +51,13 @@ html, body {
   box-sizing: border-box !important;
   overflow: hidden !important;
   pointer-events: auto !important;
+}
+
+/* The empty fullscreen-above region overlays the whole workspace (it is last
+   in the DOM). It must stay click-through, otherwise it swallows every tap
+   meant for modules in fullscreen below (e.g. MMM-AnyLists item rows). */
+.region.fullscreen.above {
+  pointer-events: none !important;
 }
 
 .region.fullscreen.below .container,
