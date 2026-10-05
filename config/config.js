@@ -56,10 +56,7 @@ let config = {
         modules: [
           ["MMM-CalendarExt3Journal"], // 4-Day Calendar View
           ["MMM-CalendarExt3"], // full month calendar
-          ["MMM-CalendarExt3"], // full month calendar
-          //"page-1": ["MMM-CalendarExt3"],        // Full Month Calendar
-          //"page-2": ["MMM-Todoist"],             // Todo List
-          //"page-3": ["weather"]                  // Weather View
+          ["MMM-AnyLists"] // kids' AnyList todo lists
         ],
         fixed: [
           "MMM-page-indicator" // Or your touch navigation module, set to 'top_left'
@@ -70,7 +67,7 @@ let config = {
       module: 'MMM-page-indicator',
       position: 'top_left',
       config: {
-        pages: 2,
+        pages: 3,
         activeBright: true,
         showPageNumberOnHover: false
       }
@@ -191,6 +188,20 @@ let config = {
         fontSize: "16px",
         eventHeight: "22px",
         refreshInterval: 5 * 60 * 1000 // Refreshes every 5 minute
+      }
+    },
+    {
+      module: "MMM-AnyLists",
+      position: "fullscreen_below",
+      config: {
+        email: "${ANYLIST_EMAIL}",
+        password: "${ANYLIST_PASSWORD}",
+        lists: ["Daniel", "Luke", "Ben"], // exact AnyList list names, one column each
+        refreshOnExternalChange: true, // websocket-driven reload
+        maxItemsPerList: 0, // 0 = unlimited
+        textAlign: "left",
+        showQuantities: false,
+        columnSeparator: true
       }
     },
 		// {
