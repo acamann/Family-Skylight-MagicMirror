@@ -128,7 +128,7 @@
    6. Past Days Dimming
    ----------------------------------------------------- */
 .CX3 .cell.past,
-.CX3 .event.past {
+.CX3 .event.passed {
   opacity: 0.40 !important;
 }
 
