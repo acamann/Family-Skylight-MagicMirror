@@ -89,6 +89,7 @@ let config = {
 			// position: "top_left",
 			config: {
 				maximumNumberOfDays: 40,
+				broadcastPastEvents: true, // include earlier-today events so the calendar view can fade them
         calendars: [
 
           // Sarah
@@ -159,8 +160,8 @@ let config = {
         locale: 'en-US',
         dateHeaderOptions: { month: 'short', day: 'numeric', weekday: 'long' },
         //maxLaneThreshold: 4,
-        hourLength: 11,
-        beginHour: 12,
+        hourLength: 18,
+        beginHour: 6,
         staticTime: true,
         staticWeek: false,
         dayIndex: 0,
