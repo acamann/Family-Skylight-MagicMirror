@@ -152,3 +152,90 @@
   color: #ffffff !important;
   border-radius: 8px !important;
 }
+
+/* -----------------------------------------------------
+   6. Event Content Layout (title-first, icon backdrop)
+   Only the title is bold; time/description/location are
+   normal weight, left aligned, full width. The calendar
+   symbol becomes a large, faint backdrop in the upper
+   right that the text paints over.
+   ----------------------------------------------------- */
+
+.CX3J .event {
+  font-weight: 400 !important;
+  line-height: 1.2 !important;
+}
+
+/* Icon (timed events): larger, darker shade of the event
+   color, absolute in the upper right corner, behind text */
+.CX3J .event.single .symbol {
+  position: absolute !important;
+  top: 4px !important;
+  right: 6px !important;
+  margin-right: 0 !important;
+  font-size: 2.4em !important;
+  line-height: 1 !important;
+  color: color-mix(in srgb, var(--calendarColor) 65%, var(--oppositeColor)) !important;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Text layers sit above the icon */
+.CX3J .event.single .title,
+.CX3J .event.single .period,
+.CX3J .event.single .time,
+.CX3J .event.single .description,
+.CX3J .event.single .location {
+  position: relative;
+  z-index: 1;
+}
+
+/* Title: upper-left, full width, wraps, the only bold line */
+.CX3J .event.single .headline {
+  display: block !important;
+  font-weight: normal !important;
+  width: 100%;
+}
+
+.CX3J .event.single .headline .title {
+  display: block !important;
+  width: 100% !important;
+  margin-left: 0 !important;
+  text-align: left !important;
+  font-size: 1.25em !important;
+  font-weight: 600 !important;
+  white-space: normal !important;
+  word-break: break-word;
+}
+
+/* Time: next line under the title, normal weight, left aligned */
+.CX3J .event.single .period,
+.CX3J .event.single .time {
+  display: block !important;
+  text-align: left !important;
+  font-weight: 400 !important;
+}
+
+/* Description/location: below the time, paragraph spacing,
+   normal weight, left aligned; hidden when empty */
+.CX3J .event.single .description,
+.CX3J .event.single .location {
+  display: block !important;
+  text-align: left !important;
+  font-weight: 400 !important;
+  white-space: normal !important;
+  word-break: break-word;
+}
+
+.CX3J .event.single .description:not(:empty) {
+  margin-top: 0.8em;
+}
+
+.CX3J .event.single .location:not(:empty) {
+  margin-top: 0.8em;
+}
+
+.CX3J .event.single .description:empty,
+.CX3J .event.single .location:empty {
+  display: none !important;
+}
