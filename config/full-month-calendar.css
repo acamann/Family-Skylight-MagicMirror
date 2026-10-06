@@ -187,12 +187,35 @@
    matching the weekly timeline's block style. */
 .CX3 .event.fullday,
 .CX3 .event.multiday {
-  background-color: var(--calendarColor) !important;
-  background: var(--calendarColor) !important;
+  /* Match the weekly view's softer 75% tint over the page background
+     instead of a solid fill */
+  background-color: color-mix(in hsl, var(--calendarColor) 75%, transparent) !important;
+  background: color-mix(in hsl, var(--calendarColor) 75%, transparent) !important;
   color: var(--oppositeColor) !important;
   border: none !important;
   border-radius: 4px !important;
   mix-blend-mode: normal !important;
+}
+
+/* Icon on full-day/multi-day chips: same subtle tinted treatment as
+   the weekly view's nonsingle events */
+.CX3 .event.fullday .symbol,
+.CX3 .event.multiday .symbol {
+  color: color-mix(in srgb, var(--calendarColor) 55%, #ffffff) !important;
+}
+
+/* Time labels: "6:30pm" in slightly smaller text so the title fits */
+.CX3 .event .time {
+  font-size: 0.72em !important;
+}
+
+.CX3 .event .time .eventTimeParts.dayPeriod {
+  text-transform: lowercase !important;
+}
+
+/* Drop the space between the minute and "pm" */
+.CX3 .event .time .eventTimeParts.literal:has(+ .eventTimeParts.dayPeriod) {
+  display: none !important;
 }
 
 .CX3 .event.fullday .headline .title,

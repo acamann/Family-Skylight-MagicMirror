@@ -182,7 +182,7 @@ let config = {
         locale: 'en-US',
         weekIndex: 0,
         weeksInView: 4,
-        maxEventLines: 10,
+        maxEventLines: 6,
         showCW: false,
         weekdayOptions: { weekday: 'short' }, // not working
         calendarMergePaths: [], // Leave empty to pull from all default calendars
