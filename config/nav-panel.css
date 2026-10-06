@@ -159,6 +159,12 @@
   mask-image: url("icons/checklist.svg") !important;
 }
 
+/* Page 3 Button Icon: brewers_glove.svg */
+.MMM-page-indicator .indicator.page-3::before {
+  -webkit-mask-image: url("icons/brewers_glove.svg") !important;
+  mask-image: url("icons/brewers_glove.svg") !important;
+}
+
 /* Inactive Icon Line Color: White */
 .MMM-page-indicator .indicator:not(.active-page)::before {
   background-color: #ffffff !important;
