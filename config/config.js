@@ -58,7 +58,8 @@ let config = {
         modules: [
           ["MMM-CalendarExt3Journal"], // 4-Day Calendar View
           ["MMM-CalendarExt3"], // full month calendar
-          ["MMM-AnyLists"] // kids' AnyList todo lists
+          ["MMM-AnyLists"], // kids' AnyList todo lists
+          ["MMM-MLB"] // live MLB playoffs bracket
         ],
         fixed: [
           "MMM-page-indicator", // Or your touch navigation module, set to 'top_left'
@@ -72,7 +73,7 @@ let config = {
       module: 'MMM-page-indicator',
       position: 'top_left',
       config: {
-        pages: 3,
+        pages: 4,
         activeBright: true,
         showPageNumberOnHover: false
       }
@@ -221,6 +222,15 @@ let config = {
         textAlign: "left",
         showQuantities: false,
         columnSeparator: true
+      }
+    },
+    {
+      module: "MMM-MLB",
+      position: "fullscreen_below",
+      config: {
+        animationSpeed: 0,
+        season: 2026,
+        updateInterval: 3 * 60 * 60 * 1000 // refresh every 3 hours
       }
     },
 		// {
