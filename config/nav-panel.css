@@ -3,7 +3,7 @@
    ===================================================== */
 
 /* -----------------------------------------------------
-   1. Left Navigation Sidebar Dock (#49536A, 50px wide, full 100vh height)
+   1. Left Navigation Sidebar Dock (#49536A, 65px wide, full 100vh height)
    ----------------------------------------------------- */
 .region.top.bar {
   pointer-events: none !important;

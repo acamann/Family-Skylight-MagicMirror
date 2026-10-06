@@ -7,14 +7,15 @@
 @import url("calendar-common.css");
 @import url("full-month-calendar.css");
 @import url("weekly-calendar.css");
+@import url("update-notification.css");
 
 /* -----------------------------------------------------
    2. Global Design Tokens
    ----------------------------------------------------- */
 :root {
-  --nav-sidebar-width: 50px;
+  --nav-sidebar-width: 65px;
   --nav-sidebar-bg: #49536A;
-  --nav-icon-size: 26px;
+  --nav-icon-size: 34px;
   --theme-bg: #ffffff;
   --theme-border: #e0e0e0;
   --theme-text-primary: #202124;
