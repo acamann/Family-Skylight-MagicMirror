@@ -46,7 +46,8 @@ let config = {
     "config/calendar-common.css",
     "config/full-month-calendar.css",
     "config/weekly-calendar.css",
-    "config/update-notification.css"
+    "config/update-notification.css",
+    "config/updates-icon.css"
   ],
 
 	modules: [
@@ -62,7 +63,8 @@ let config = {
         fixed: [
           "MMM-page-indicator", // Or your touch navigation module, set to 'top_left'
           "updatenotification", // Must stay visible on every page
-          "alert" // Alert notifications should not be hidden by page changes
+          "alert", // Alert notifications should not be hidden by page changes
+          "MMM-updates-icon" // Yellow update icon pinned to the bottom of the nav dock
         ]
       }
     },
@@ -83,7 +85,16 @@ let config = {
 			position: "top_bar",
 			config: {
 				// Core repo check fails on our fork (local 'main' vs upstream 'master' -> no origin/main)
-				ignoreModules: ["MagicMirror"]
+				ignoreModules: ["MagicMirror"],
+				// Broadcast the UPDATES notification that MMM-updates-icon listens for
+				sendUpdatesNotifications: true
+			}
+		},
+		{
+			module: 'MMM-updates-icon',
+			position: 'top_left',
+			config: {
+				animationSpeed: 0
 			}
 		},
 		// {

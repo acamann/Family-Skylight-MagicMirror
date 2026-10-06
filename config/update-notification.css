@@ -1,38 +1,5 @@
-/* =====================================================
-   Update Notification Banner
-   - mostly opaque soft yellow so text is readable
-   - rounded corners + margin so it's not cramped
-   ===================================================== */
-
-/* Keep the update notification above the fullscreen calendar regions,
-   which otherwise paint over it (e.g. the "today" pill on month view). */
-.region.top.bar {
-  z-index: 100;
-}
-
-/* The template output is wrapped in an extra div by MagicMirror's getDom
-   (.module-content > div > [template divs]). Style that inner wrapper as the
-   banner, and only when it actually contains update entries (:has), so the
-   yellow background doesn't show when there are no notifications. */
-.module.updatenotification .module-content > div:has(> div) {
-  background-color: rgba(255, 229, 102, 0.92);
-  border-radius: 12px;
-  margin: 10px auto;
-  padding: 10px 16px;
-  width: fit-content;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-}
-
-/* Space stacked entries apart instead of cramped */
-.module.updatenotification .module-content > div > div + div {
-  margin-top: 8px;
-}
-
-/* Keep the text readable against the yellow background */
-.module.updatenotification .small.bright {
-  color: #4d4300;
-}
-
-.module.updatenotification .xsmall.dimmed {
-  color: #665c1a;
+/* The full-width updatenotification banner is replaced by the
+   MMM-updates-icon button in the nav dock — hide the original module. */
+.module.updatenotification {
+  display: none !important;
 }
