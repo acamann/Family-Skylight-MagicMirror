@@ -22,7 +22,7 @@
 
 ## Page & Navigation Architecture
 - **MMM-pages**: Manages tabbed views using 2D arrays (`modules: [ ["ModuleA"], ["ModuleB", "ModuleC"] ]`).
-- **Current pages** (4): page 0 = `MMM-CalendarExt3Journal` (rolling timeline), page 1 = `MMM-CalendarExt3` (4-week grid), page 2 = `MMM-AnyLists` (kids' todo lists), page 3 = `MMM-MLB` (live playoffs bracket).
+- **Current pages** (4): page 0 = `MMM-CalendarExt3Journal` (rolling timeline), page 1 = `MMM-CalendarExt3` (4-week grid), page 2 = `MMM-AnyLists` (kids' todo lists), page 3 = `MMM-MLBPlayoffs` (live playoffs bracket).
 - **MMM-page-indicator**: Fixed to `top_left` as the sidebar dock for touch navigation; its `pages` count must match the MMM-pages page count (currently 4).
 
 ## Key Module References
@@ -30,5 +30,5 @@
 - `MMM-CalendarExt3`: Calendar grid view (`mode: "week"`, `weeksInView: 4`, instanceId `fourWeekCalendar`).
 - `MMM-AnyLists`: Kids' todo lists — three AnyList lists (Daniel / Luke / Ben) side-by-side in `fullscreen_below`. Tapping an item toggles `checked` in AnyList (optimistic strike-through, reconciled by websocket `lists-update`); checked items stay visible struck-through until removed in the app. One shared AnyList login lives in its `node_helper`; all AnyList operations are serialized through an `async` queue of concurrency 1. PRD: `docs/MMM-AnyLists.md`.
 - `MMM-pages`: Background tab state manager.
-- `MMM-MLB`: Live MLB postseason bracket with series standings, refreshed every 3 hours from the official Stats API (`https://statsapi.mlb.com/api/v1/schedule?...`). `view: 'bracket'` is the only view for now; a `standings` view is planned for next season. PRD: `docs/MMM-MLB.md`.
+- `MMM-MLBPlayoffs`: Live MLB postseason bracket with series standings, refreshed hourly (every 15 min while a game is live) from the official Stats API (`https://statsapi.mlb.com/api/v1/schedule?...`). Repo: `https://github.com/acamann/MMM-MLBPlayoffs.git`. `view: 'bracket'` is the only view for now; a `standings` view is planned for next season. PRD: `docs/MMM-MLBPlayoffs.md`.
 - a local copy of Module README documentation exists in `docs/*` for your reference

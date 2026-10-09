@@ -1,8 +1,8 @@
-# MMM-MLB — Product Requirements Document
+# MMM-MLBPlayoffs - Product Requirements Document
 
 ## Overview
 
-`MMM-MLB` is a MagicMirror² module that displays the **current MLB postseason
+`MMM-MLBPlayoffs` is a MagicMirror² module that displays the **current MLB postseason
 bracket with live series standings** (e.g. "Brewers lead 2-0", "Series tied
 1-1", "Dodgers win series 4-2", plus the next game time). Data comes from the
 official MLB Stats API and refreshes on a slow interval (default: every 3
@@ -35,7 +35,7 @@ The module is structured so it can be reused next season for related views:
 
 ```js
 {
-  module: 'MMM-MLB',
+  module: 'MMM-MLBPlayoffs',
   position: 'fullscreen_below',
   config: {
     season: 2026,                       // MLB season year
@@ -68,7 +68,7 @@ The module is structured so it can be reused next season for related views:
 
 ## Page Integration
 
-- `MMM-pages` gets a fourth page: `["MMM-MLB"]`.
+- `MMM-pages` gets a fourth page: `["MMM-MLBPlayoffs"]`.
 - `MMM-page-indicator` `pages` count goes from 3 to 4.
 
 ## Open Questions / Future

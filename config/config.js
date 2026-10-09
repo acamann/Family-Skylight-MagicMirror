@@ -59,7 +59,7 @@ let config = {
           ["MMM-CalendarExt3Journal"], // 4-Day Calendar View
           ["MMM-CalendarExt3"], // full month calendar
           ["MMM-AnyLists"], // kids' AnyList todo lists
-          ["MMM-MLB"] // live MLB playoffs bracket
+          ["MMM-MLBPlayoffs"] // live MLB playoffs bracket
         ],
         fixed: [
           "MMM-page-indicator", // Or your touch navigation module, set to 'top_left'
@@ -225,7 +225,7 @@ let config = {
       }
     },
     {
-      module: "MMM-MLB",
+      module: "MMM-MLBPlayoffs",
       position: "fullscreen_below",
       config: {
         animationSpeed: 0,
