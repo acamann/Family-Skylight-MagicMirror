@@ -230,7 +230,8 @@ let config = {
       config: {
         animationSpeed: 0,
         season: 2026,
-        updateInterval: 3 * 60 * 60 * 1000 // refresh every 3 hours
+        updateInterval: 60 * 60 * 1000, // refresh hourly
+        liveInterval: 15 * 60 * 1000 // every 15 min while a game is in progress
       }
     },
 		// {
