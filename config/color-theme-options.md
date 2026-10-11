@@ -8,7 +8,7 @@ Each person keeps a consistent hue family across all palettes.
 | Sarah   | Orange              |
 | Andy    | Green *(calendar not yet in config)* |
 | Family  | Brown / Neutral     |
-| Daniel  | Yellow / Gold       |
+| Daniel  | Red / Flamingo *(off-theme)* |
 | Luke    | Light Blue          |
 | Ben     | Teal / Light Green  |
 
@@ -29,14 +29,14 @@ Warm, earthy 70s tones with medium saturation.
 ## Palette 2 — "Dusty Pastel" ✅ ACTIVE
 Softer, lighter, lower contrast.
 
-| Person  | Color          | Hex       |
-|---------|----------------|-----------|
-| Sarah   | Dusty peach    | `#CE8A6A` |
-| Andy    | Muted fern     | `#7FA07A` |
-| Family  | Greige         | `#9B8B78` |
-| Daniel  | Soft marigold  | `#D0B35C` |
-| Luke    | Powder blue    | `#9BB8CC` |
-| Ben     | Seafoam        | `#6FA8A0` |
+| Person  | Color            | Hex       |
+|---------|------------------|-----------|
+| Sarah   | Dusty peach      | `#CE8A6A` |
+| Andy    | Muted fern       | `#7FA07A` |
+| Family  | Greige           | `#9B8B78` |
+| Daniel  | Flamingo (Google)| `#E67C73` |
+| Luke    | Powder blue      | `#9BB8CC` |
+| Ben     | Seafoam          | `#6FA8A0` |
 
 ## Palette 3 — "Deep Earth"
 Richer, moodier retro jewel tones.
@@ -54,6 +54,7 @@ Richer, moodier retro jewel tones.
 
 ### Notes
 - Daniel's color also applies to the **Kapow** and **Rough Riders** calendars.
+- Daniel's Flamingo is Google's own calendar color `#E67C73`, so it sits outside the three muted palettes above on purpose. If you ever want Daniel back on-theme, add a new "Palette 4" row rather than overwriting the active palette's other people.
 - Luke's color also applies to the **Mustangs** calendar.
 - Ben's color also applies to the **Green Ninjas** calendar.
 - Andy's calendar is not yet configured — use the Andy hex from the active palette when adding it.

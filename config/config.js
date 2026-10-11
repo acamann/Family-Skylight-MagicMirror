@@ -129,17 +129,17 @@ let config = {
           {
             name: "Daniel",
             url: "${CAL_DANIEL_CALENDAR}",
-            color: "#D0B35C"
+            color: "#E67C73"
           },
           {
             name: "Kapow",
             url: "${CAL_KAPOW_CALENDAR}",
-            color: "#D0B35C"
+            color: "#E67C73"
           },
           {
             name: "Rough Riders",
             url: "${CAL_ROUGH_RIDERS_CALENDAR}",
-            color: "#D0B35C"
+            color: "#E67C73"
           },
           
           // Luke
