@@ -5,6 +5,9 @@
 .CX3J {
   --moduleHeight: 100vh !important;
   --moduleWidth: 100% !important;
+  /* Widened from the module's 60px default: the index labels sit at
+     --cal-text-size now, and "6:00 AM" no longer fits the old track. */
+  --indexWidth: 84px;
 
   /* Grid lines: match the month view's crisp light-gray borders */
   --mainBorderStyle: 1px solid var(--theme-border) !important;
@@ -25,14 +28,16 @@
    ----------------------------------------------------- */
 .CX3J .daycell .day {
   color: var(--theme-text-primary) !important;
-  font-weight: 700 !important;
+  font-size: var(--cal-font-size) !important;
+  font-weight: var(--cal-header-weight) !important;
 }
 
 .CX3J .daycell .weekday,
 .CX3J .daycell.weekend_1 .weekday,
 .CX3J .daycell.weekend_2 .weekday {
   color: var(--theme-text-primary) !important;
-  font-weight: 700 !important;
+  font-size: var(--cal-title-size) !important;
+  font-weight: var(--cal-header-weight) !important;
   letter-spacing: 1px !important;
   text-transform: uppercase !important;
 }
@@ -84,7 +89,7 @@
   position: relative;
   z-index: 1;
   color: #ffffff !important;
-  font-weight: 700 !important;
+  font-weight: var(--cal-header-weight) !important;
   line-height: 1.3 !important;
   background: none !important;
   padding-top: 0 !important;
@@ -115,6 +120,7 @@
    ----------------------------------------------------- */
 .CX3J .gridCell.index {
   color: var(--theme-text-muted) !important;
+  font-size: var(--cal-text-size) !important;
 }
 
 /* -----------------------------------------------------
@@ -165,6 +171,7 @@
 .CX3J .nowIndicator {
   --indicatorStyle: 1px dashed rgb(26 115 232 / 50%) !important;
   color: #ffffff !important;
+  font-size: var(--cal-text-size) !important;
 }
 
 /* Current-time label chip (module default: solid gold) */
@@ -184,7 +191,11 @@
    ----------------------------------------------------- */
 
 .CX3J .event {
-  font-weight: 400 !important;
+  /* Module roots timed events at 0.5em (10px off the inherited 20px body).
+     Base the box on the shared secondary size and let the title below
+     step up to the shared title size. */
+  font-size: var(--cal-text-size) !important;
+  font-weight: var(--cal-weight) !important;
   line-height: 1.2 !important;
 }
 
@@ -195,7 +206,7 @@
   top: 4px !important;
   right: 0px !important;
   margin-right: 0 !important;
-  font-size: 2.4em !important;
+  font-size: 2em !important;
   line-height: 1 !important;
   color: color-mix(in srgb, var(--calendarColor) 55%, #ffffff) !important;
   pointer-events: none;
@@ -206,6 +217,9 @@
    be dropped when the event isn't tall enough to fit it */
 .CX3J .event.single {
   container-type: size;
+  /* Trimmed from the module's 2px so a title-only event still clears the
+     height of a half-hour slot at the larger --cal-title-size. */
+  padding: 1px 5px !important;
 }
 
 @container (max-height: 32px) {
@@ -236,8 +250,8 @@
   width: 100% !important;
   margin-left: 0 !important;
   text-align: left !important;
-  font-size: 1.25em !important;
-  font-weight: 600 !important;
+  font-size: var(--cal-title-size) !important;
+  font-weight: var(--cal-title-weight) !important;
   white-space: normal !important;
   word-break: break-word;
 }
@@ -247,7 +261,7 @@
 .CX3J .event.single .time {
   display: block !important;
   text-align: left !important;
-  font-weight: 400 !important;
+  font-weight: var(--cal-weight) !important;
 }
 
 /* Description/location: below the time, paragraph spacing,
@@ -256,7 +270,7 @@
 .CX3J .event.single .location {
   display: block !important;
   text-align: left !important;
-  font-weight: 400 !important;
+  font-weight: var(--cal-weight) !important;
   white-space: normal !important;
   word-break: break-word;
 }
@@ -274,6 +288,31 @@
   display: none !important;
 }
 
+/* The time line only fits beside the title when the box is at least the two
+   line heights plus the box padding:
+     title  23px x 1.15  = 26.45px
+     time   16px x 1.2   = 19.20px
+     padding 1px x 2         =  2.00px   => 47.65px
+   The previous 54px cutoff hid the time on 1-hour events, which land around
+   55px on a 1080p-tall mirror (34 half-hour rows over the remaining height)
+   even though they have room for it. 48px keeps them whole and still drops
+   the time on half-hour slots, which genuinely cannot fit both.
+   Re-derive this if --cal-title-size or --cal-text-size change. */
+@container (max-height: 48px) {
+  /* Title-only: tighten its leading so a half-hour slot clears the box
+     instead of clipping the descenders. */
+  .CX3J .event.single .headline .title {
+    line-height: 1.05;
+  }
+
+  .CX3J .event.single .period,
+  .CX3J .event.single .time,
+  .CX3J .event.single .description,
+  .CX3J .event.single .location {
+    display: none !important;
+  }
+}
+
 /* -----------------------------------------------------
    7. Full-Day / Multi-Day Event Chips (.notsingle)
    Slightly taller chips, and the icon uses the same
@@ -285,11 +324,21 @@
   padding: 4px 6px !important;
   display: flex !important;
   align-items: center !important;
+  /* Module roots these chips at 0.75em and their titles at 0.8em of that.
+     Bring them onto the shared scale so all-day chips match timed ones. */
+  font-size: var(--cal-text-size) !important;
+  font-weight: var(--cal-weight) !important;
+  line-height: 1.2 !important;
 }
 
 .CX3J .event.notsingle .headline {
   align-items: center !important;
   width: 100%;
+}
+
+.CX3J .event.notsingle .headline .title {
+  font-size: var(--cal-title-size) !important;
+  font-weight: var(--cal-title-weight) !important;
 }
 
 .CX3J .event.notsingle .symbol {

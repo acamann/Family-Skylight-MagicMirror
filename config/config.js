@@ -179,15 +179,16 @@ let config = {
         locale: 'en-US',
         dateHeaderOptions: { month: 'short', day: 'numeric', weekday: 'long' },
         //maxLaneThreshold: 4,
-        hourLength: 17,
+        hourLength: 15,
         beginHour: 6,
         staticTime: true,
         staticWeek: false,
         dayIndex: 0,
-        days: 6,
+        days: 5,
         calendarSet: [], // Leave empty to pull from all default calendars
-        fontSize: "16px",
-        eventHeight: "22px",
+        // NOTE: this module has no fontSize/eventHeight options — it sizes its
+        // type from its own em chain. Calendar typography is controlled in
+        // config/calendar-common.css via the --cal-* tokens in custom.css.
         refreshInterval: 5 * 60 * 1000 // Refreshes every 5 minute
       }
     },
@@ -205,8 +206,11 @@ let config = {
         showCW: false,
         weekdayOptions: { weekday: 'short' }, // not working
         calendarMergePaths: [], // Leave empty to pull from all default calendars
-        fontSize: "16px",
-        eventHeight: "22px",
+        // Module-level scale. Keep fontSize in step with --cal-font-size and
+        // eventHeight sized to fit --cal-title-size; config/calendar-common.css
+        // pins the rendered type to the shared --cal-* tokens.
+        fontSize: "28px",
+        eventHeight: "34px",
         refreshInterval: 5 * 60 * 1000 // Refreshes every 5 minute
       }
     },

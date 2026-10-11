@@ -11,7 +11,7 @@
   --cell-bg-color: #ffffff !important;
   --today-bg-color: #ffffff !important;
   --cell-border-color: #e0e0e0 !important;
-  --cellheaderheight: 34px;
+  --cellheaderheight: 44px;
 
   display: flex !important;
   flex-direction: column !important;
@@ -83,7 +83,8 @@
   text-align: center !important;
   text-transform: uppercase !important;
   color: #000000 !important;
-  font-weight: 700 !important;
+  font-size: var(--cal-font-size) !important;
+  font-weight: var(--cal-header-weight) !important;
   letter-spacing: 1px !important;
 }
 
@@ -98,7 +99,8 @@
   width: 100% !important;
   box-sizing: border-box;
   padding: 0 6px;
-  font-weight: bold;
+  font-size: var(--cal-font-size) !important;
+  font-weight: var(--cal-header-weight);
 }
 
 .CX3 .cellHeader * {
@@ -112,10 +114,10 @@
   padding: 0 10px !important;
   display: inline-block !important;
   width: 100% !important;
-  height: 26px !important;
-  line-height: 26px !important;
-  margin: 4px auto !important;
-  font-weight: bold !important;
+  height: 34px !important;
+  line-height: 34px !important;
+  margin: 5px auto !important;
+  font-weight: var(--cal-header-weight) !important;
 }
 
 .CX3 .cell.today .cellHeader * {
@@ -170,6 +172,8 @@
   border-radius: 4px;
   border: 1px solid rgba(0, 0, 0, 0.1);
   color: #000000 !important;
+  font-size: var(--cal-title-size) !important;
+  font-weight: var(--cal-weight) !important;
 }
 
 .CX3 .event .title {
@@ -178,9 +182,20 @@
   padding-bottom: 2px;
 }
 
-/* Match the weekly timeline: semibold instead of full bold */
+/* Module default is 75% of the root size (12px); hold the primary content
+   at the shared title size instead. */
 .CX3 .event .headline .title {
-  font-weight: 600 !important;
+  font-size: var(--cal-title-size) !important;
+  font-weight: var(--cal-title-weight) !important;
+}
+
+/* "+N" overflow bubble, sized to stay legible next to the larger rows */
+.CX3 .cell.hasMore::after {
+  width: 22px;
+  height: 22px;
+  font-size: var(--cal-text-size);
+  line-height: 22px;
+  border-radius: 11px;
 }
 
 /* All-day / multi-day events: filled chips with contrasting text,
@@ -204,9 +219,9 @@
   color: color-mix(in srgb, var(--calendarColor) 55%, #ffffff) !important;
 }
 
-/* Time labels: "6:30pm" in slightly smaller text so the title fits */
+/* Time labels: "6:30pm" one step below the title so the title keeps its room */
 .CX3 .event .time {
-  font-size: 0.72em !important;
+  font-size: var(--cal-text-size) !important;
 }
 
 .CX3 .event .time .eventTimeParts.dayPeriod {

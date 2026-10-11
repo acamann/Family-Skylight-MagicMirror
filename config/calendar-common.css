@@ -24,7 +24,27 @@ header { color: #333333; border-bottom: 1px solid #cccccc; }
 }
 
 /* -----------------------------------------------------
-   3. Shared Event Typography & Wrapping
+   3. Shared Typography Scale
+   Both calendar views previously sized text off their module's
+   private em chain: CX3 rooted at --fontsize (16px in config.js)
+   and rendered titles at 75% of it, while CX3J inherited the 20px
+   body size but rendered events at 0.5em. Both landed near 12px and
+   neither matched the other. Pin both roots to the shared --cal-*
+   tokens (custom.css) and let the per-view files below size their
+   individual lines from the same scale.
+   ----------------------------------------------------- */
+.CX3,
+.CX3J {
+  font-family: var(--font-primary), sans-serif !important;
+  font-size: var(--cal-font-size) !important;
+  font-weight: var(--cal-weight);
+}
+
+/* -----------------------------------------------------
+   4. Shared Event Typography & Wrapping
+   Event titles are the primary content of both views; the per-view
+   files size them to the shared scale (--cal-title-size /
+   --cal-title-weight) so they match across panels.
    ----------------------------------------------------- */
 .CX3 .event .title,
 .CX3J .event .title {
