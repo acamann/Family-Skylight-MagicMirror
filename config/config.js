@@ -65,7 +65,8 @@ let config = {
           "MMM-page-indicator", // Or your touch navigation module, set to 'top_right'
           "updatenotification", // Must stay visible on every page
           "alert", // Alert notifications should not be hidden by page changes
-          "MMM-updates-icon" // Yellow update icon pinned to the bottom of the nav dock
+          "MMM-updates-icon", // Yellow update icon pinned to the bottom of the nav dock
+          "MMM-ScreenSleep" // Idle timer must keep running no matter which page is showing
         ]
       }
     },
@@ -86,7 +87,9 @@ let config = {
 			position: "top_bar",
 			config: {
 				// Core repo check fails on our fork (local 'main' vs upstream 'master' -> no origin/main)
-				ignoreModules: ["MagicMirror"],
+				// MMM-ScreenSleep's own git remote is a private repo; pm2 has no
+				// credentials, so `git fetch --dry-run` prompts and fails.
+				ignoreModules: ["MagicMirror", "MMM-ScreenSleep"],
 				// Broadcast the UPDATES notification that MMM-updates-icon listens for
 				sendUpdatesNotifications: true
 			}
@@ -236,6 +239,24 @@ let config = {
         season: 2026,
         updateInterval: 60 * 60 * 1000, // refresh hourly
         liveInterval: 15 * 60 * 1000 // every 15 min while a game is in progress
+      }
+    },
+    {
+      // Blank the display when nobody has touched the mirror. Must stay 'fixed'
+      // in MMM-pages above, or page changes would stop the idle timer.
+      module: "MMM-ScreenSleep",
+      position: "fullscreen_above",
+      config: {
+        dayIdleTimeout: 2 * 60 * 60 * 1000, // 2 hours of no touch
+        nightIdleTimeout: 5 * 60 * 1000, // 5 minutes overnight
+        nightStart: "22:00", // quiet window opens
+        nightEnd: "06:00", // quiet window closes
+        wakeAt: "06:45", // always back on by the time the day starts
+        wakeOnTouch: true, // any tap wakes it, at any hour
+        // labwc is the display server. DISPLAY=:0 is Xwayland -rootless, which
+        // has no hardware access, so xset/DPMS can never blank this panel.
+        wlrOutput: "HDMI-A-1", // name as `wlr-randr` reports it
+        waylandDisplay: "wayland-0"
       }
     },
 		// {
