@@ -1,12 +1,12 @@
 /* =====================================================
    MMM-updates-icon — Nav Panel Dock Overrides
    Matches MMM-page-indicator's square touch buttons and pins
-   the icon to the bottom of the left dock.
+   the icon to the bottom of the right dock.
    (Generic defaults live in the module's own CSS.)
    ===================================================== */
 
-/* Pin to the bottom of the top_left flex column */
-.region.top.left .container > .module.MMM-updates-icon {
+/* Pin to the bottom of the top_right flex column */
+.region.top.right .container > .module.MMM-updates-icon {
   margin-top: auto !important;
   width: 100% !important;
   margin-left: 0 !important;
@@ -14,8 +14,8 @@
   padding: 0 !important;
 }
 
-.region.top.left .module.MMM-updates-icon .module-content,
-.region.top.left .module.MMM-updates-icon .updates-icon {
+.region.top.right .module.MMM-updates-icon .module-content,
+.region.top.right .module.MMM-updates-icon .updates-icon {
   width: 100%;
   margin: 0;
   padding: 0;
@@ -45,7 +45,8 @@
   color: #f7e9a8 !important;
 }
 
-/* Popover hugs the right edge of the dock */
+/* Popover hugs the left edge of the dock, opening into the workspace */
 .module.MMM-updates-icon .updates-icon-popover {
-  left: calc(var(--nav-sidebar-width) + 12px) !important;
+  left: auto !important;
+  right: calc(var(--nav-sidebar-width) + 12px) !important;
 }

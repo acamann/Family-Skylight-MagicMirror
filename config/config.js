@@ -62,7 +62,7 @@ let config = {
           ["MMM-MLBPlayoffs"] // live MLB playoffs bracket
         ],
         fixed: [
-          "MMM-page-indicator", // Or your touch navigation module, set to 'top_left'
+          "MMM-page-indicator", // Or your touch navigation module, set to 'top_right'
           "updatenotification", // Must stay visible on every page
           "alert", // Alert notifications should not be hidden by page changes
           "MMM-updates-icon" // Yellow update icon pinned to the bottom of the nav dock
@@ -71,7 +71,7 @@ let config = {
     },
     {
       module: 'MMM-page-indicator',
-      position: 'top_left',
+      position: 'top_right',
       config: {
         pages: 4,
         activeBright: true,
@@ -93,7 +93,7 @@ let config = {
 		},
 		{
 			module: 'MMM-updates-icon',
-			position: 'top_left',
+			position: 'top_right',
 			config: {
 				animationSpeed: 0
 			}

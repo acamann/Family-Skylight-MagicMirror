@@ -4,7 +4,7 @@
 
 `MMM-updates-icon` is a custom MagicMirror² module that replaces the
 full-width `updatenotification` banner with a **single yellow exclamation
-icon pinned to the bottom of the left nav panel**. Tap the icon and a popover
+icon pinned to the bottom of the right nav panel**. Tap the icon and a popover
 listing the outdated modules appears; tap again to dismiss it.
 
 Update detection and scanning stay in the stock MagicMirror `updatenotification`
@@ -13,8 +13,8 @@ module broadcasts.
 
 ## Goals
 
-- [ ] Show one yellow `!` button at the bottom of the left sidebar
-      (`top_left` region), styled to match the existing nav-panel touch
+- [ ] Show one yellow `!` button at the bottom of the right sidebar
+      (`top_right` region), styled to match the existing nav-panel touch
       squares (same size, border separators, touch feedback).
 - [ ] Display nothing when no module updates are pending.
 - [ ] React to the `updatenotification` `UPDATES` broadcast: icon appears
@@ -40,7 +40,7 @@ module broadcasts.
 // config/config.js
 {
   module: 'MMM-updates-icon',
-  position: 'top_left',     // same region as MMM-page-indicator; pinned to
+  position: 'top_right',    // same region as MMM-page-indicator; pinned to
                             // the bottom of the dock via CSS `margin-top: auto`
   config: {
     animationSpeed: 0
@@ -63,11 +63,11 @@ module broadcasts.
 | # | Requirement |
 |---|---|
 | F1 | Render nothing (empty wrapper) until the first `UPDATES` notification arrives. |
-| F2 | Render a yellow square button (75px, dock-style) in the bottom of the left sidebar when ≥ 1 outdated module is reported. |
+| F2 | Render a yellow square button (sized to `--nav-sidebar-width`, dock-style) in the bottom of the right sidebar when ≥ 1 outdated module is reported. |
 | F3 | Tap toggles the detail popover; popover lists module name and "N commit(s) behind `<tracking>`". |
 | F4 | Icon remains on page 0, 1, 2 (fixed module class for MMM-pages). |
 | F5 | Old full-width `updatenotification` banner hidden via CSS. |
-| F6 | Popover appears to the right of the sidebar, above fullscreen calendar modules (z-index). |
+| F6 | Popover appears to the left of the sidebar, above fullscreen calendar modules (z-index). |
 
 ## Technical Requirements
 
@@ -77,7 +77,7 @@ module broadcasts.
 | T2 | Payload shape comes from `git_helper.checkUpdates()`: `[{ module, behind, current, tracking, isBehindInStatus, ... }]`. |
 | T3 | Popover state (`open`/`closed`) is local to the module; `updateDom` re-renders after toggle. |
 | T4 | Own local git repo (`git init`), no GitHub remote yet. |
-| T5 | Module CSS pins the wrapper to the bottom of the `top_left` flex column and sizes the button to match `--nav-sidebar-width`. |
+| T5 | Module CSS pins the wrapper to the bottom of the `top_right` flex column and sizes the button to match `--nav-sidebar-width`. |
 
 ## Styling
 
@@ -88,8 +88,9 @@ module broadcasts.
   `config/updates-icon.css`) to match the nav panel: nav-blue square
   (`--nav-sidebar-bg: #49536A`), soft yellow (`#f7e9a8`) glyph, dock
   sizing, bottom-pinned.
-- Popover is `position: fixed` at the bottom, immediately right of the nav
-  sidebar (`left: calc(var(--nav-sidebar-width) + 8px)`).
+- Popover is `position: fixed` at the bottom, immediately left of the nav
+  sidebar (`right: calc(var(--nav-sidebar-width) + 12px)`, `left: auto`),
+  opening leftward into the workspace.
 
 ## Open Questions / Future
 

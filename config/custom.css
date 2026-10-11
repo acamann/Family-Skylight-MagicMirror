@@ -14,9 +14,9 @@
    2. Global Design Tokens
    ----------------------------------------------------- */
 :root {
-  --nav-sidebar-width: 65px;
+  --nav-sidebar-width: 97.5px;
   --nav-sidebar-bg: #49536A;
-  --nav-icon-size: 34px;
+  --nav-icon-size: 51px;
   --theme-bg: #ffffff;
   --theme-border: #e0e0e0;
   --theme-text-primary: #202124;
@@ -38,13 +38,13 @@ html, body {
 }
 
 /* -----------------------------------------------------
-   4. Main Workspace Bounds (Remaining screen next to nav dock)
+   4. Main Workspace Bounds (Remaining screen left of the nav dock)
    ----------------------------------------------------- */
 .region.fullscreen.below {
   position: absolute !important;
   top: 0 !important;
-  left: var(--nav-sidebar-width) !important;
-  right: 0 !important;
+  left: 0 !important;
+  right: var(--nav-sidebar-width) !important;
   bottom: 0 !important;
   width: calc(100vw - var(--nav-sidebar-width)) !important;
   height: 100vh !important;

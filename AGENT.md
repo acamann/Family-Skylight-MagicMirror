@@ -15,15 +15,15 @@
 
 ## UI & Layout Philosophy
 - **Layout Model**: Flexbox App Shell.
-- **Sidebar**: Left vertical dock (`top_left` region fixed at 50px width, `z-index: 9999`).
-- **Main Workspace**: Shifts left by 50px (`calc(100vw - 50px)`) using Flexbox for tiled module views.
+- **Sidebar**: Right vertical dock (`top_right` region fixed at `--nav-sidebar-width`, `z-index: 9999`). Both the dock and its buttons size off `--nav-sidebar-width` / `--nav-icon-size` in `config/custom.css`.
+- **Main Workspace**: Shrinks by the dock width (`calc(100vw - var(--nav-sidebar-width))`) and is inset from the right edge (`right: var(--nav-sidebar-width)`) using Flexbox for tiled module views.
 - **Theme**: Clean, high-contrast, touch-friendly light theme (white background, dark typography).
 - **Touch Input**: The mirror is tap-driven (page-indicator dots, AnyLists item check-off). The empty `fullscreen above` region must always stay `pointer-events: none` (enforced in `config/custom.css`) — it overlays the entire workspace and silently swallows every tap if made interactive.
 
 ## Page & Navigation Architecture
 - **MMM-pages**: Manages tabbed views using 2D arrays (`modules: [ ["ModuleA"], ["ModuleB", "ModuleC"] ]`).
 - **Current pages** (4): page 0 = `MMM-CalendarExt3Journal` (rolling timeline), page 1 = `MMM-CalendarExt3` (4-week grid), page 2 = `MMM-AnyLists` (kids' todo lists), page 3 = `MMM-MLBPlayoffs` (live playoffs bracket).
-- **MMM-page-indicator**: Fixed to `top_left` as the sidebar dock for touch navigation; its `pages` count must match the MMM-pages page count (currently 4).
+- **MMM-page-indicator**: Fixed to `top_right` as the sidebar dock for touch navigation; its `pages` count must match the MMM-pages page count (currently 4).
 
 ## Key Module References
 - `MMM-CalendarExt3Journal`: Rolling timeline schedule view (currently `days: 6`).
