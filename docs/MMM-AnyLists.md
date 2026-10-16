@@ -20,9 +20,12 @@ Checking an item on the mirror writes back to AnyList, so:
       mirror within seconds (AnyList websocket-driven refresh), no mirror edits
       required.
 - [ ] Kids tap an item on the mirror to toggle its checked state; the change is
-      persisted to AnyList (`item.checked` + `item.save()`), and the item stays
-      visible as **struck-through / dimmed** until manually removed in the
-      AnyList app.
+      persisted to AnyList (`item.checked` + `item.save()`), and the item leaves
+      the panel so the list reads as what is left to do.
+- [ ] A header above the lists (configurable text, `header`) carries a
+      show/hide-checked toggle on its right. **Checked items are hidden by
+      default**; the toggle brings them back struck-through and dimmed, and the
+      chosen state survives a server restart.
 - [ ] One AnyList login per mirror (single shared family account), not one
       login per list/instance.
 - [ ] Credentials loaded from `config/config.env` (`${ANYLIST_EMAIL}`,
@@ -34,8 +37,8 @@ Checking an item on the mirror writes back to AnyList, so:
 
 - Adding/deleting/renaming items from the mirror.
 - Per-kid AnyList accounts or separate logins.
-- Hiding checked items automatically (checked items persist struck-through
-  until parents remove them in the AnyList app).
+- Permanently removing checked items — hiding them is a view toggle, not a
+  delete; parents still clear them out in the AnyList app.
 - Recipes, grocery categories, or AnyList features beyond list items.
 
 ## Configuration
@@ -53,6 +56,9 @@ Checking an item on the mirror writes back to AnyList, so:
     textAlign: 'left',
     showQuantities: false,
     columnSeparator: true,
+    header: 'To Do',            // panel title; '' removes the header bar
+    showCheckedToggle: true,    // show/hide-checked button on the header's right
+    hideCheckedItems: true,     // initial state, before the first tap
   }
 }
 ```
@@ -63,9 +69,13 @@ Checking an item on the mirror writes back to AnyList, so:
 |---|---|
 | F1 | One module instance renders all configured lists as equally-width columns. |
 | F2 | Column header shows the AnyList list name. |
+| F2b | A configurable panel header (`header`) sits above the columns, styled like the `MMM-MLBPlayoffs` title. |
+| F2c | The header's right side holds an eye toggle that shows/hides checked items: slashed eye while hidden, solid accent eye while shown. 56px circular target, `aria-pressed` set, no text label; `showCheckedToggle: false` removes it. |
 | F3 | Each item row is a tap target sized for touch (≥ 40px tall). |
 | F4 | Tapping an item toggles checked state, persists to AnyList, and immediately updates the local UI (optimistic strike-through), later reconciled by the live-refresh event. |
-| F5 | Checked items render struck-through and dimmed, and remain in place until removed in the AnyList app. |
+| F5 | Checked items are hidden by default. Revealed via the toggle, they render struck-through and dimmed, and remain in place until removed in the AnyList app. |
+| F5b | A column whose items are all checked and hidden reads "All done", not "No items". |
+| F5c | `hideCheckedItems` is the only source of the initial state, negated into the module's `showChecked` flag. Taps then persist to `localStorage` (key `MMM-AnyLists:showChecked:v2:<identifier>`) so the choice survives a restart; storage failures fall back to the config default. |
 | F6 | Items added/removed/checked in the AnyList app appear on the mirror without restart (websocket `lists-update`). |
 | F7 | Login errors surface in the UI as a small error message and are logged server-side. |
 | F8 | Concurrent interactions are serialized through the helper queue (prevent AnyList login/update errors from parallel requests). |
@@ -132,6 +142,9 @@ See the module README for the full symptom-to-cause table.
 ## Styling
 
 - Light theme (white background, dark text), matching `config/custom.css`.
+- Panel header above the columns: bold title on the left, circular eye toggle on
+  the right, 4px bottom rule — the `MMM-MLBPlayoffs` title treatment, sized to
+  sit above the denser three-column layout.
 - Three-column flex row, thin vertical separators between columns.
 - Each row: circular checkbox affordance + item name; checked = line-through,
   40–50% opacity, filled checkbox.
@@ -141,5 +154,6 @@ See the module README for the full symptom-to-cause table.
 
 - Exact AnyList list names for the 3 columns (confirm with user before final
   config).
+- Header copy (`header`) — settled on "To Do", configurable per instance.
 - Optional "add item" input per column (kiosk keyboard) — out of scope for v1.
 - Per-kid color accents matching calendar colors (Daniel/Luke/Ben) — nice-to-have.

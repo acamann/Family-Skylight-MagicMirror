@@ -228,7 +228,10 @@ let config = {
         maxItemsPerList: 0, // 0 = unlimited
         textAlign: "left",
         showQuantities: false,
-        columnSeparator: true
+        columnSeparator: true,
+        header: "To Do", // panel title; '' removes the header bar
+        showCheckedToggle: true, // show/hide-checked button on the header's right
+        hideCheckedItems: true // initial state; the tap is remembered after that
       }
     },
     {
