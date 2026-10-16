@@ -82,6 +82,46 @@ Checking an item on the mirror writes back to AnyList, so:
 | T6 | Module has its own git repo (local `git init` now, GitHub remote added later). |
 | T7 | Secrets only via env; `config.js` uses `${ANYLIST_EMAIL}` / `${ANYLIST_PASSWORD}`. |
 
+## Reliability
+
+The mirror is an unattended appliance that boots before WiFi is often up, so
+the AnyList connection is treated as fallible rather than assumed.
+
+- **Retries** — the initial connect makes 5 attempts with a 2s / 5s / 15s / 30s
+  backoff. Only transient failures qualify (network-level socket errors,
+  timeouts, HTTP 5xx/408/429); a `401` or bad config fails immediately so real
+  mistakes are not buried behind a minute of waiting.
+- **Tap to retry** — the error banner is tappable and replays the stored `INIT`
+  payload, so a panel that fails after the automatic retries can be recovered
+  by touch.
+- **Teardown** — `stop()` closes the websocket and clears the 5s heartbeat,
+  which otherwise holds the process open after pm2 asks the server to shut down.
+
+### Known defects patched in `anylist@0.8.6`
+
+`node_helper.js` applies two repairs at startup (`_repairUpstreamDefects`).
+`0.8.6` is the newest published version, so there is no upstream fix to wait on.
+
+1. The library's authenticated `got` client registers a `beforeError` hook that
+   dereferences `error.response` unguarded. `got` **discards the original error**
+   whenever a hook throws (`got/dist/source/core/index.js:1194`), so every
+   network-level failure was reported as
+   `Cannot read properties of undefined (reading 'request')` with the actual
+   cause thrown away. This was the cause of the unreadable error on the panel.
+2. `_refreshTokens()` reads `error.response.statusCode` unguarded from the
+   websocket error handler, rejecting on the same class of network error. Nothing
+   catches it, so it escaped as an unhandled rejection.
+
+### Diagnosing a failure
+
+The panel shows a short hint; the server log carries the real cause and stack:
+
+```bash
+pm2 logs magicmirror --lines 50
+```
+
+See the module README for the full symptom-to-cause table.
+
 ## Page Integration
 
 - `MMM-pages` third page becomes `["MMM-AnyLists"]`.
