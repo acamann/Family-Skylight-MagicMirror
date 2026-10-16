@@ -1,13 +1,16 @@
 /* =====================================================
    MMM-updates-icon — Nav Panel Dock Overrides
-   Matches MMM-page-indicator's square touch buttons and pins
-   the icon to the bottom of the right dock.
+   Matches MMM-page-indicator's square touch buttons and sits
+   directly above the MMM-Refresh reload button.
    (Generic defaults live in the module's own CSS.)
    ===================================================== */
 
-/* Pin to the bottom of the top_right flex column */
+/* Sits directly above the reload button, which now owns the `margin-top: auto`
+   slot at the foot of the dock (see modules/MMM-Refresh/MMM-Refresh.css).
+   Two auto margins would split the leftover space and float both off the
+   bottom edge. */
 .region.top.right .container > .module.MMM-updates-icon {
-  margin-top: auto !important;
+  margin-top: 0 !important;
   width: 100% !important;
   margin-left: 0 !important;
   margin-right: 0 !important;

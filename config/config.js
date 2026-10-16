@@ -66,6 +66,7 @@ let config = {
           "updatenotification", // Must stay visible on every page
           "alert", // Alert notifications should not be hidden by page changes
           "MMM-updates-icon", // Yellow update icon pinned to the bottom of the nav dock
+          "MMM-Refresh", // Reload button; must stay on every page like the icons above
           "MMM-ScreenSleep" // Idle timer must keep running no matter which page is showing
         ]
       }
@@ -99,6 +100,19 @@ let config = {
 			position: 'top_right',
 			config: {
 				animationSpeed: 0
+			}
+		},
+		// Registered after MMM-updates-icon so it renders last in the dock and
+		// takes the bottom-left corner. See modules/MMM-Refresh/MMM-Refresh.css.
+		{
+			module: "MMM-Refresh",
+			position: "top_right",
+			config: {
+				animationSpeed: 0,
+				iconSize: 26, // glyph box in px, under the 51px page icons
+				opacity: 0.45, // at-rest glyph opacity — deliberately quiet
+				activeOpacity: 0.9, // while held, and during the pre-reload spin
+				reloadDelay: 400 // ms of tap feedback before the page reloads
 			}
 		},
 		// {
